@@ -19,7 +19,9 @@ node checkpoint.mjs observe example
 node checkpoint.mjs verify example
 ```
 
-追加パッケージのインストールは不要です。同梱例は架空データで、`valid: true, ready: false`が正常です。未実行のCSV検証と範囲外の作業を、完了扱いにしない例です。ライセンス本文・NOTICE・ファイルごとのハッシュを同梱しています。チェックサムは破損確認用で、第三者の署名認証ではありません。
+追加パッケージのインストールは不要です。この同梱例の確認にはPMの参加やCodexへのログインも不要です。同梱例は架空データで、`valid: true, ready: false`が正常です。未実行のCSV検証と範囲外の作業を、完了扱いにしない例です。ライセンス本文・NOTICE・ファイルごとのハッシュを同梱しています。チェックサムは破損確認用で、第三者の署名認証ではありません。
+
+[ひとりで共有文と古い評価の失効を確かめる手順](https://aidhidesupport.github.io/iap/guide/developer/#before)も用意しました。実案件への導入前に、一時フォルダーへコピーした架空例で試せます。[Linux・macOSの4環境での検証](DISTRIBUTION_TESTS.md) / [導入相談](https://github.com/aidhidesupport/iap/issues/new?template=installation.md)
 
 配布物に実案件の記録、端末固有の設定、Codex本体は含みません。Codexを呼ぶ実ランタイム試験用ハーネスも最小配布物の対象外です。下のフック有効化は、例を読む操作とは別です。
 

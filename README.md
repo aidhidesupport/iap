@@ -32,6 +32,8 @@ Codex連携はIAPの一つの実装例です。仕様・ガイドと、Apache-2.
 
 [基本実装0.2.5](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz) / [開発者ガイド](CODEX_GUIDE.md) / [参加と支援](SUPPORT.md)。まず小さな架空案件から試せます。
 
+ひとりで同梱例を試す段階では、PMの参加やCodexのログインは不要です。[紹介用の短文・出典表記](SHARE.md)と[導入相談の記入用紙](https://github.com/aidhidesupport/iap/issues/new?template=installation.md)も用意しています。
+
 ## 提案を育てる
 
 曖昧な要件、使えない手順、反証例を[Issue](https://github.com/aidhidesupport/iap/issues)に寄せてください。個人名・職場の原文・顧客資料・診断情報・資格情報を含まない、小さな架空例で十分です。試した結果が改善しなかった場合も、仕様を見直す材料になります。
