@@ -7,21 +7,46 @@ on:
       - 'iap-codex-*.tar.gz'
       - 'iap-codex-*.sha256'
       - '.github/workflows/distribution.yml'
+      - 'codex/**'
+      - 'scripts/package-codex*'
+      - 'website/public/downloads/iap-codex-*'
   pull_request:
     paths:
       - 'iap-codex-*.tar.gz'
       - 'iap-codex-*.sha256'
       - '.github/workflows/distribution.yml'
+      - 'codex/**'
+      - 'scripts/package-codex*'
+      - 'website/public/downloads/iap-codex-*'
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
+  source:
+    name: Reproduce distribution from source
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Check source, archive and website download agree
+        run: python3 scripts/package-codex.py --check
+      - name: Check packaging failure cases
+        run: python3 scripts/package-codex.test.py
+      - name: Read the verified distribution version
+        id: version
+        run: python3 -c 'import json; print("version=" + json.load(open("codex/package.json"))["version"])' >> "$GITHUB_OUTPUT"
+
   distribution:
+    needs: source
     name: ${{ matrix.os }} / Node ${{ matrix.node }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 10
+    env:
+      IAP_VERSION: ${{ needs.source.outputs.version }}
     strategy:
       fail-fast: false
       matrix:
@@ -35,10 +60,10 @@ jobs:
       - name: Verify and extract the published distribution
         shell: bash
         run: |
-          shasum -a 256 -c iap-codex-0.2.5.sha256
-          tar -xzf iap-codex-0.2.5.tar.gz -C "$RUNNER_TEMP"
+          shasum -a 256 -c "iap-codex-${IAP_VERSION}.sha256"
+          tar -xzf "iap-codex-${IAP_VERSION}.tar.gz" -C "$RUNNER_TEMP"
       - name: Verify every bundled file
-        working-directory: ${{ runner.temp }}/iap-codex-0.2.5
+        working-directory: ${{ runner.temp }}/iap-codex-${{ env.IAP_VERSION }}
         shell: bash
         run: |
           node --input-type=module <<'NODE'
@@ -47,7 +72,7 @@ jobs:
           import { createHash } from 'node:crypto';
           const manifest = JSON.parse(readFileSync('MANIFEST.json', 'utf8'));
           assert.equal(manifest.format, 'iap-distribution/1');
-          assert.equal(manifest.version, '0.2.5');
+          assert.equal(manifest.version, process.env.IAP_VERSION);
           const expected = manifest.files.map(file => file.path);
           assert.equal(new Set(expected).size, expected.length);
           for (const file of manifest.files) {
@@ -71,5 +96,5 @@ jobs:
           console.log(`Verified ${expected.length} files plus MANIFEST.json`);
           NODE
       - name: Run packaged tests with synthetic fixtures
-        working-directory: ${{ runner.temp }}/iap-codex-0.2.5
+        working-directory: ${{ runner.temp }}/iap-codex-${{ env.IAP_VERSION }}
         run: npm test

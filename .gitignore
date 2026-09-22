@@ -4,3 +4,4 @@
 *.key
 node_modules/
 private/
+__pycache__/

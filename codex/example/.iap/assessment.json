@@ -1,0 +1,26 @@
+{
+  "format": "iap-codex-assessment/0.1",
+  "observationId": "fbc1e5f374e8bdbaed1e8c94230af0425654fac82baea89a422ba24d2eedbc48",
+  "revision": 1,
+  "disposition": "revise",
+  "nextAction": "汎用化の検討を止め、金額1列のCSVの合計と不正行の実行結果を作る。",
+  "checks": [
+    {
+      "id": "C1",
+      "result": "unknown",
+      "reason": "架空の進捗文のみを観測した。600という数値の記載はあるが、CSV処理の実行結果ではない。",
+      "evidence": [{ "file": "artifact.txt", "quote": "これはテスト用の文字列で、CSV実行結果ではない。" }]
+    },
+    {
+      "id": "C2",
+      "result": "unknown",
+      "reason": "不正な金額を含む入力を処理した実行結果は観測できていない。",
+      "evidence": [{ "file": "artifact.txt", "quote": "合計600を表示する画面と、不正な金額の処理はまだない。" }]
+    }
+  ],
+  "scope": {
+    "result": "outside",
+    "reason": "途中成果の説明が、対象外の汎用インポート基盤、ログイン、DBへ広がっている。",
+    "evidence": [{ "file": "artifact.txt", "quote": "汎用インポート基盤を設計した。ログインとデータベースも追加する予定。" }]
+  }
+}

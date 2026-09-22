@@ -23,7 +23,37 @@ AI支援を使ったことだけで寄稿を拒否しません。内容を確認
 
 Issueで相談しただけで、著作権が自動譲渡されたり、投稿全体が別の商用条件へ変更できたりする扱いにはしません。公開条件への同意がない文章を、そのまま仕様へ取り込むこともしません。改善案を採用するときは提供条件を確認します。
 
-コードは配布アーカイブにソースとテストを含めています。改善案は対象版を示してIssueへ差分を添えるか、PRで提案してください。維持者が再現・検査し、次の配布版へ反映します。
+コードは[基本実装](codex/)と[サイト](website/)の通常ファイルを編集し、対象版を示してPRで提案できます。配布済みのtar.gzだけを直接差し替えないでください。維持者が再現・検査し、次の配布版へ反映します。[PRテンプレート](.github/PULL_REQUEST_TEMPLATE.md)にも既存の提供条件と確認結果の欄があります。
+
+## 開発時の確認
+
+基本実装はmacOS/Linux、Node.js 22.13以降。npmの追加依存はありません。Python 3.9以降は配布物の再現検査に使います。リポジトリ直下から実行します。
+
+```sh
+cd codex
+npm test
+cd ..
+python3 scripts/package-codex.py --check
+python3 scripts/package-codex.test.py
+```
+
+`--check`はcodex/から作ったアーカイブが、ルートとサイト内の配布物・チェックサムに一致することを確認します。MANIFEST.jsonは生成物です。公開済み0.2.5のコード・同梱文書・テストを変える場合は、`codex/package.json`の版を更新し、新版のアーカイブとサイト内の配布物・案内を揃えてください。詳細は[配布手順](RELEASING.md#ソースから配布物を作る)を参照します。
+
+サイトは[website/README.md](website/README.md)に従って編集します。PRでは型検査・ビルド・参照先確認が動き、公開はmainへの反映後です。英語の入口を直す場合はREADME.en.mdとQUICKSTART.en.md、日本語の対応箇所も確認してください。
+
+ルートのガイドは現行の案内、`codex/`内の同梱ガイドはその配布版の一部です。ルートの文章を直すだけで旧配布物を再作成しません。配布版に手順の修正を届けるときは、同梱ガイドも更新して新しい版に含めます。
+
+0.2.5の`codex/example/paired-session.md`には、配布物に含まれない開発用の測定文書への相対リンクが1件残っています。現在の公開手順は[試用手順](PILOT_RUNBOOK.md)と[基本実装の測定コマンド](codex/README.md#実案件の測定を残す)を参照してください。既存0.2.5は保持し、同梱リンク自体の訂正は次の配布版に含めます。
+
+## Development and contributions
+
+Use Node.js 22.13 or later on macOS/Linux. The implementation in [codex/](codex/) needs no additional npm packages. Run the commands above from the repository root; Python 3.9 or later is needed to reproduce the distribution. Website changes use [website/](website/): run `npm ci`, `npx tsc --noEmit`, `npm run build`, and `node scripts/check-export.mjs` there.
+
+Edit the normal source files and submit a PR describing the target version, the problem, the change, and checks performed. Keep published archives unchanged. A change to bundled files requires a new implementation version and matching distribution files; the root guides can be updated independently. Examples should be fictional and contain no private project records.
+
+The 0.2.5 fixture `codex/example/paired-session.md` retains one relative link to a development-only measurement document that is not bundled. Use the published [trial runbook](PILOT_RUNBOOK.md) and [measurement commands](codex/README.md#実案件の測定を残す) instead (Japanese). Correct the bundled link in the next distribution version; keep 0.2.5 unchanged.
+
+Contribute under the existing license of each affected file, only where you are authorized to do so. The [PR template](.github/PULL_REQUEST_TEMPLATE.md) asks for your preferred credit (a handle is enough), known third-party sources and terms, and AI assistance. This does not transfer your copyright. No additional commercial relicensing permission is requested. Reporting an issue alone is not agreement to incorporate its text under another license.
 
 ## 判断の進め方
 
