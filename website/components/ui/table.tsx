@@ -5,6 +5,10 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { handleScrollKey } from '@/lib/scroll-region';
 
+// Named, focusable scroll regions let keyboard users read overflowing content.
+// They retain document semantics rather than pretending to be buttons or inputs.
+// https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/overflow#accessibility
+/* oxlint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex, jsx-a11y/prefer-tag-over-role */
 function Table({ className, scrollLabel = '表', ...props }: React.ComponentProps<'table'> & { scrollLabel?: string }) {
   return (
     <div
@@ -23,6 +27,8 @@ function Table({ className, scrollLabel = '表', ...props }: React.ComponentProp
     </div>
   );
 }
+
+/* oxlint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-noninteractive-tabindex, jsx-a11y/prefer-tag-over-role */
 
 function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
   return (
