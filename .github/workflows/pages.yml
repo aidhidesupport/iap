@@ -1,0 +1,61 @@
+name: Publish IAP website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'website-source.tar.gz'
+      - 'website-source.sha256'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@v6
+      - name: Restore website source when published from the browser
+        working-directory: .
+        run: |
+          if [ ! -f website/package.json ]; then
+            sha256sum --check website-source.sha256
+            tar -xzf website-source.tar.gz
+          fi
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+      - uses: actions/configure-pages@v5
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npm run build
+      - run: node scripts/check-export.mjs
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: website/dist/client
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
