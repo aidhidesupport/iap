@@ -3,11 +3,16 @@
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
+import { handleScrollKey } from '@/lib/scroll-region';
 
-function Table({ className, ...props }: React.ComponentProps<'table'>) {
+function Table({ className, scrollLabel = '表', ...props }: React.ComponentProps<'table'> & { scrollLabel?: string }) {
   return (
     <div
       data-slot="table-container"
+      tabIndex={0}
+      onKeyDown={handleScrollKey}
+      role="region"
+      aria-label={scrollLabel}
       className="relative w-full overflow-x-auto"
     >
       <table
