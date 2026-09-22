@@ -61,6 +61,8 @@ node "$iap_trial/.iap/checkpoint.mjs" resume "$iap_trial"
 
 一時フォルダーに `.iap`、`.codex/hooks.json`、`AGENTS.md`、Gitの除外設定が作られます。順に `installed: true`、`configured: true`、`paused: true`、`paused: false` を確認します。`configured`はファイル配置の確認です。`runtimeActivation: "not_verified"`のとおり、Codexセッション内でのフック動作は確認していません。IAPの休止はCodex自体の中断とは別です。
 
+この例ではまだ評価を作っていないため、`doctor` の `state.valid: false`、`assessment_missing_or_invalid`、`disposition: "unassessed"` は想定どおりです。`configured: true` と併せて表示されても、配置の失敗を意味しません。
+
 取り外しは、その一時フォルダーを使うCodexセッションを閉じた状態で行います。最初のコマンドは変更予定の表示、次が適用です。
 
 ```sh

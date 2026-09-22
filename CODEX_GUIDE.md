@@ -44,7 +44,7 @@ node manage.mjs doctor /path/to/project
 
 次にその案件を対象にCodex CLIを開き、`/hooks` で内容をレビューして信頼します。新規・変更されたフックは信頼されるまで実行されません。[OpenAI公式の手順](https://learn.chatgpt.com/docs/hooks#review-and-trust-hooks)を参照してください。
 
-`doctor` の `configured: true` はファイル配置の確認です。小さな架空案件で、成果変更後の照合と共有文生成が実際に動くところまで確認します。別の案件や端末へも自動的に導入されたとは扱いません。
+`doctor` の `configured: true` はファイル配置の確認です。導入直後で評価がまだない場合、`state.valid: false`、`assessment_missing_or_invalid`、`disposition: "unassessed"` が併記されても、配置の失敗を意味しません。小さな架空案件で、成果変更後の照合と共有文生成が実際に動くところまで確認します。別の案件や端末へも自動的に導入されたとは扱いません。
 
 ## 作業と共有
 
