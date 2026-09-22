@@ -1,0 +1,75 @@
+name: Test IAP distribution
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'iap-codex-*.tar.gz'
+      - 'iap-codex-*.sha256'
+      - '.github/workflows/distribution.yml'
+  pull_request:
+    paths:
+      - 'iap-codex-*.tar.gz'
+      - 'iap-codex-*.sha256'
+      - '.github/workflows/distribution.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  distribution:
+    name: ${{ matrix.os }} / Node ${{ matrix.node }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        node: ['22.13.0', '22']
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Verify and extract the published distribution
+        shell: bash
+        run: |
+          shasum -a 256 -c iap-codex-0.2.5.sha256
+          tar -xzf iap-codex-0.2.5.tar.gz -C "$RUNNER_TEMP"
+      - name: Verify every bundled file
+        working-directory: ${{ runner.temp }}/iap-codex-0.2.5
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import { readFileSync, readdirSync, lstatSync } from 'node:fs';
+          import { createHash } from 'node:crypto';
+          const manifest = JSON.parse(readFileSync('MANIFEST.json', 'utf8'));
+          assert.equal(manifest.format, 'iap-distribution/1');
+          assert.equal(manifest.version, '0.2.5');
+          const expected = manifest.files.map(file => file.path);
+          assert.equal(new Set(expected).size, expected.length);
+          for (const file of manifest.files) {
+            assert(!file.path.startsWith('/') && !file.path.split('/').includes('..'));
+            const data = readFileSync(file.path);
+            assert.equal(data.length, file.bytes, file.path);
+            assert.equal(createHash('sha256').update(data).digest('hex'), file.sha256, file.path);
+          }
+          const actual = [];
+          function walk(dir = '.') {
+            for (const name of readdirSync(dir)) {
+              const path = dir === '.' ? name : `${dir}/${name}`;
+              const stat = lstatSync(path);
+              assert(!stat.isSymbolicLink(), path);
+              if (stat.isDirectory()) walk(path);
+              else { assert(stat.isFile(), path); actual.push(path); }
+            }
+          }
+          walk();
+          assert.deepEqual(actual.sort(), [...expected, 'MANIFEST.json'].sort());
+          console.log(`Verified ${expected.length} files plus MANIFEST.json`);
+          NODE
+      - name: Run packaged tests with synthetic fixtures
+        working-directory: ${{ runner.temp }}/iap-codex-0.2.5
+        run: npm test
