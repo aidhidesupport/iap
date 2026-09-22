@@ -1,6 +1,6 @@
 # 配布・更新の運用
 
-仕様草案とCodex連携の基本実装は別々の版で管理します。現在は仕様0.2-draft、基本実装0.2.5。GitHub Releasesと正式なタグはまだ公開していません。
+仕様草案とCodex連携の基本実装は別々の版で管理します。現在は仕様0.2-draft、基本実装0.2.5。[GitHub Release codex-v0.2.5](https://github.com/aidhidesupport/iap/releases/tag/codex-v0.2.5)をpre-releaseとして公開しています。
 
 ## 利用者への案内
 

@@ -28,3 +28,9 @@ Codexの信頼レビューは自動操作していません。新たな実Codex�
 配布物のバイト列と版は変更せず、Linux・macOS × Node.js 22.13.0・22.23.2のCIで各80テストが成功しました。[検証結果](DISTRIBUTION_TESTS.md)。商標の一次検索は実施済みですが、利用可否・登録可能性の判断と出願・登録は未了です。[ブランド方針](BRAND.md)。他の人の端末での試用と実案件の効果測定は未実施です。
 
 [配布・更新の案内](https://aidhidesupport.github.io/iap/updates/) / [活動報告](ACTIVITY.md)
+
+## GitHub Releaseでの配布
+
+2026-09-23。公開mainの履歴整理後に、[codex-v0.2.5](https://github.com/aidhidesupport/iap/releases/tag/codex-v0.2.5)をpre-releaseとして公開しました。上記の履歴未整理の記述は2026-09-22時点の記録です。mainの整理は、旧コミットURL・キャッシュ・他のクローンからの完全な削除を意味しません。
+
+添付の基本実装は先行配布した0.2.5と同一です。SHA-256は`db5e06af7de92e4ac3751d68183575237a3b731182095bbef9a0fac59df2d82a`。Release公開による機能追加や実案件での効果確認はありません。
