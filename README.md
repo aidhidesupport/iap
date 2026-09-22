@@ -17,6 +17,8 @@ Codex連携はIAPの一つの実装例です。仕様・ガイドと、Apache-2.
 
 [ホームページとガイド](https://aidhidesupport.github.io/iap/)から、提案・役割別ガイド・デモ・検証の現在地を読めます。
 
+[よくある質問](https://aidhidesupport.github.io/iap/faq/) / [配布・更新と活動報告](https://aidhidesupport.github.io/iap/updates/)
+
 ## 読む順序
 
 - [まず一つの依頼で理解する](QUICKSTART.md)：道具を入れる前に、役割と流れをつかむ。
