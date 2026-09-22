@@ -23,6 +23,7 @@ Codex連携はIAPの一つの実装例です。仕様・ガイドと、Apache-2.
 - [開発者ガイド](CODEX_GUIDE.md)：ダウンロード、導入・確認・共有、停止・取り外し。
 - [PMガイド](PM_GUIDE.md)：依頼に書くこと、共有文の読み方、判断の返し方。
 - [実装と検証の現在地](STATUS.md)：技術的に確かめたことと、まだ分からないこと。
+- [配布物の自動検証](DISTRIBUTION_TESTS.md)：Linux・macOS、Node.jsの最低版と22系での結果。
 - [一案件の試用手順](PILOT_RUNBOOK.md)：両者の負担と失敗を記録する。
 - [統合仕様 0.2](IAP_SPEC.md) / [適合・反証ケース](CONFORMANCE_CASES.md)：設計原則と検証案。
 - [活動の順序](ROADMAP.md)：説明、試行、記録、改善の次の一歩。
