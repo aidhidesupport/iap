@@ -73,6 +73,8 @@ node "$iap_trial/.iap/checkpoint.mjs" resume "$iap_trial"
 
 Installation places `.iap`, `.codex/hooks.json`, `AGENTS.md`, and Git exclusions in the temporary project. Expect `installed: true`, then `configured: true`, then `paused: true` and `paused: false`. `configured` checks local files; `runtimeActivation: "not_verified"` means this has not tested hooks in a running Codex session. Pausing IAP does not stop Codex itself.
 
+This example has not created an assessment yet, so `doctor` reporting `state.valid: false`, `assessment_missing_or_invalid`, and `disposition: "unassessed"` is expected at this step. These can appear alongside `configured: true` without indicating an installation failure.
+
 Keep any Codex session using this temporary project closed while removing the installation. The first command previews the changes; the second applies them.
 
 ```sh
