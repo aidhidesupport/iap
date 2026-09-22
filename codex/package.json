@@ -1,0 +1,13 @@
+{
+  "name": "@aidhidesupport/iap-codex",
+  "version": "0.2.5",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "test": "node --test *.test.mjs"
+  }
+}

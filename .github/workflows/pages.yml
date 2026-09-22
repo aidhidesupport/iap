@@ -1,7 +1,14 @@
-name: Publish IAP website
+name: Check and publish IAP website
 
 on:
   push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'website-source.tar.gz'
+      - 'website-source.sha256'
+      - '.github/workflows/pages.yml'
+  pull_request:
     branches: [main]
     paths:
       - 'website/**'
@@ -14,18 +21,19 @@ permissions:
   contents: read
 
 concurrency:
-  group: github-pages
-  cancel-in-progress: false
+  group: iap-pages-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: website
     steps:
       - uses: actions/checkout@v6
-      - name: Restore website source when published from the browser
+      - name: Restore source for older archive-only checkouts
         working-directory: .
         run: |
           if [ ! -f website/package.json ]; then
@@ -38,16 +46,19 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
       - uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
       - run: npm ci
       - run: npx tsc --noEmit
       - run: npm run build
       - run: node scripts/check-export.mjs
       - uses: actions/upload-pages-artifact@v4
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         with:
           path: website/dist/client
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       pages: write

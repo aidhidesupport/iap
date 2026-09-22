@@ -1,0 +1,5 @@
+# Local records produced when trying the bundled fixture.
+/example/.iap/*
+!/example/.iap/contract.json
+!/example/.iap/assessment.json
+/.iap/

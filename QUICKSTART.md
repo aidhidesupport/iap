@@ -1,6 +1,8 @@
 # IAPを一つの依頼で理解する
 
-2026-09-22 / partial-standardsによる仕様草案の提案
+[English](QUICKSTART.en.md) / 日本語
+
+2026-09-23 / partial-standardsによる仕様草案の提案
 
 PMと開発者を別々の人として、依頼・作業・共有を考えます。まずは既存のチャットでこの一枚を使えます。以下は架空例であり、実際の参加者や効果の記録ではありません。
 
@@ -42,4 +44,31 @@ PMと開発者を別々の人として、依頼・作業・共有を考えます
 
 中断時は、再開する次の一手を残します。試行後は開発者・PM・支援者の確認時間、手戻り、共有時間、次も使いたい理由を別々に記録します。不明は不明として残し、比較案件がなければ時間削減率は出しません。
 
-次は [開発者ガイド](CODEX_GUIDE.md)、[PMガイド](PM_GUIDE.md)、[試用手順](PILOT_RUNBOOK.md)へ。再利用条件は [RIGHTS.md](RIGHTS.md) を参照してください。
+## 5. 架空例で導入・休止・取り外しを確認する（任意）
+
+まず[開発者ガイドの入手手順](CODEX_GUIDE.md#入手して確かめる)で配布物を展開・確認します。同梱例の確認にはPMやCodexへのログインは不要です。macOS/Linux、Node.js 22.13以降が対象です。
+
+展開した `iap-codex-0.2.5` フォルダーで実行します。別の一時フォルダーを作り、架空の成果だけを置いて配置・休止・再開を確認します。
+
+```sh
+iap_trial=$(mktemp -d)
+cp example/artifact.txt "$iap_trial/artifact.txt"
+node manage.mjs install "$iap_trial" example/.iap/contract.json
+node manage.mjs doctor "$iap_trial"
+node "$iap_trial/.iap/checkpoint.mjs" pause "$iap_trial"
+node "$iap_trial/.iap/checkpoint.mjs" resume "$iap_trial"
+```
+
+一時フォルダーに `.iap`、`.codex/hooks.json`、`AGENTS.md`、Gitの除外設定が作られます。順に `installed: true`、`configured: true`、`paused: true`、`paused: false` を確認します。`configured`はファイル配置の確認です。`runtimeActivation: "not_verified"`のとおり、Codexセッション内でのフック動作は確認していません。IAPの休止はCodex自体の中断とは別です。
+
+取り外しは、その一時フォルダーを使うCodexセッションを閉じた状態で行います。最初のコマンドは変更予定の表示、次が適用です。
+
+```sh
+node manage.mjs uninstall "$iap_trial"
+node manage.mjs uninstall "$iap_trial" --apply
+printf '%s\n' "$iap_trial"
+```
+
+予定表示では `dryRun: true`、適用後は `uninstalled: true` を確認します。契約・記録・バックアップ・ライセンス・Gitの除外設定は残ります。最後に表示された一時フォルダーを確認し、架空記録が不要になったらフォルダーごと削除できます。既存案件の `.codex` や `AGENTS.md` 全体を削除する手順ではありません。
+
+実案件への導入とフック有効化は [開発者ガイド](CODEX_GUIDE.md)、依頼と受け取りは [PMガイド](PM_GUIDE.md)、測定は [試用手順](PILOT_RUNBOOK.md)へ。ローカル操作の成功は、別の人の導入成功や実案件の負担軽減の実証とは区別します。再利用条件は [RIGHTS.md](RIGHTS.md) を参照してください。

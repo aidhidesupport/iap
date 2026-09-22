@@ -1,0 +1,26 @@
+{
+  "title": "案件未設定",
+  "metrics": {
+    "setupMinutes": { "value": null, "source": null },
+    "workerReviewMinutes": { "value": null, "source": null },
+    "requesterReviewMinutes": { "value": null, "source": null },
+    "operatorSupportMinutes": { "value": null, "source": null },
+    "reworkMinutes": { "value": null, "source": null },
+    "falseAlertMinutes": { "value": null, "source": null },
+    "missedNotifications": { "value": null, "source": null },
+    "falseAlerts": { "value": null, "source": null },
+    "manualActions": { "value": null, "source": null },
+    "evaluationElapsedSeconds": { "value": null, "source": null },
+    "stopRechecks": { "value": null, "source": null },
+    "shareGenerationSeconds": { "value": null, "source": null },
+    "shareEditMinutes": { "value": null, "source": null },
+    "shareDeliveryMinutes": { "value": null, "source": null },
+    "requesterShareReviewMinutes": { "value": null, "source": null },
+    "decisionWaitMinutes": { "value": null, "source": null }
+  },
+  "comparison": { "comparable": false, "reason": null },
+  "feedback": {
+    "worker": { "reuse": "unknown", "reason": null },
+    "requester": { "reuse": "unknown", "reason": null }
+  }
+}
