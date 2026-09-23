@@ -8,7 +8,9 @@ Maintained and edited by [@aidhidesupport](https://github.com/aidhidesupport). S
 
 IAP is a draft specification for agreeing on goals, completion criteria, communication, checks, and how to pause and resume work. It aims to preserve a person's choices when working with other people, AI, and services. It grew out of difficulties experienced by people with neurodevelopmental differences. Using it does not require disclosing a diagnosis or an IQ score.
 
-The proposal is published as part of partial-standards, with an implementation and examples that can be tested and challenged. It is not an adopted standard, an official MCP extension, or a system with established benefits in real projects.
+The proposal is published as part of partial-standards. The Codex integration is an experimental release with the core workflow implemented: checking completion criteria, correcting and checking again, drafting a summary, invalidating stale assessments, and pausing or resuming. The current trial is intended for people who can run terminal commands on macOS or Linux. You can start with the bundled fictional example.
+
+Installation by other people and reduced workload in real projects remain unverified. Release 0.2.5 passed 80 distribution tests in each of four environments. The full workflow with actual Codex was checked in 0.2.4; repeating it with 0.2.5 remains a next technical check. See [evidence and limitations](STATUS.md). IAP is a draft proposal, not an adopted standard or an official MCP extension.
 
 ## The first example: a PM, a developer, and Codex
 
