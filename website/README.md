@@ -33,4 +33,4 @@ node scripts/check-export.mjs
 
 ## 公開条件と配布物
 
-仕様・ガイドはCC BY 4.0、基本実装はApache-2.0。詳細はリポジトリ直下のRIGHTS.mdとLICENSE.mdを参照。`/participate/`に利用条件と参加案内を掲載する。`public/downloads/`に0.2.6と保持する0.2.5の最小配布物・チェックサム、`public/licenses/`に利用条件と第三者のライセンスを収録する。公開動画はPM・Codex表記の日本語字幕と控えめなBGM付き。読み上げ音声は含めない。BGM「Inspired」／Kevin MacLeodの出典・CC BY 4.0・編集内容を掲載ページとTHIRD_PARTY_NOTICES.mdに記載している。
+仕様・ガイドはCC BY 4.0、基本実装はApache-2.0。詳細はリポジトリ直下のRIGHTS.mdとLICENSE.mdを参照。`/participate/`に利用条件と参加案内を掲載する。`public/downloads/`に0.2.6と保持する0.2.5の最小配布物・チェックサム、`public/licenses/`に利用条件と第三者のライセンスを収録する。公開動画は2分3秒。冒頭24秒でIAPの説明と理念を伝え、続いてCodex連携の実装例を紹介する。PM・Codex表記の日本語字幕と控えめなBGM付き。読み上げ音声は含めない。BGM「Inspired」／Kevin MacLeodの出典・CC BY 4.0・編集内容を掲載ページとTHIRD_PARTY_NOTICES.mdに記載している。

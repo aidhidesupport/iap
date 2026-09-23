@@ -23,7 +23,7 @@ The developer shares a short summary and asks the PM for decisions that change t
 - [Three fictional use cases](USE_CASES.md) (Japanese): completion criteria, intermediate checks, and resuming work.
 - [Independent implementers](IMPLEMENTERS.md#for-independent-implementers): scope, requirement IDs, and compatibility limits.
 - [Quickstart in English](QUICKSTART.en.md): a fictional request, each person's role, and local checks, with optional installation, pausing, and removal in a temporary folder.
-- [Website, role guides and 99-second demo](https://aidhidesupport.github.io/iap/) (Japanese).
+- [Website, role guides and 2-minute introduction](https://aidhidesupport.github.io/iap/) (Japanese).
 - [Developer guide](CODEX_GUIDE.md) and [PM guide](PM_GUIDE.md) (Japanese).
 - [Current evidence and limitations](STATUS.md) and [distribution tests](DISTRIBUTION_TESTS.md) (Japanese).
 - [Specification](IAP_SPEC.md), [conformance and counterexamples](CONFORMANCE_CASES.md), and [roadmap](ROADMAP.md) (Japanese).
