@@ -1,19 +1,19 @@
 # 開発者ガイド — 導入から共有まで
 
-2026-09-22 / Codex連携のローカル試作0.2.5
+2026-09-24 / Codex連携のローカル試作0.2.6
 
 基本実装のソース・テストをApache-2.0で配布しています。商用でも利用でき、寄付や個別の許可は不要です。この文書を開いただけでは、案件への導入やフックの有効化は行われません。
 
 ## 入手して確かめる
 
-[0.2.5をダウンロード](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz) / [SHA-256](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256)。macOS/Linux、Node.js 22.13以降が対象です。端末上で次のように展開できます。
+[0.2.6をダウンロード](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.tar.gz) / [SHA-256](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.sha256)。macOS/Linux、Node.js 22.13以降が対象です。端末上で次のように展開できます。
 
 ```sh
-curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz
-curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256
-shasum -a 256 -c iap-codex-0.2.5.sha256
-tar -xzf iap-codex-0.2.5.tar.gz
-cd iap-codex-0.2.5
+curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.tar.gz
+curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.sha256
+shasum -a 256 -c iap-codex-0.2.6.sha256
+tar -xzf iap-codex-0.2.6.tar.gz
+cd iap-codex-0.2.6
 npm test
 node checkpoint.mjs observe example
 node checkpoint.mjs verify example
@@ -31,7 +31,7 @@ PMから目的・完成条件・対象外を受け取り、開発者とCodexが 
 
 ## 配置と有効化
 
-展開した `iap-codex-0.2.5` フォルダーで、例のパスを実際のパスへ置き換えて実行します。
+展開した `iap-codex-0.2.6` フォルダーで、例のパスを実際のパスへ置き換えて実行します。
 
 ```sh
 node manage.mjs install /path/to/project /path/to/contract.json

@@ -5,7 +5,7 @@
 | 対象 | 条件 |
 |---|---|
 | 仕様・ガイド等のMarkdown本文、サイトの説明文、現行の字幕付き無音デモの独自の表現 | [CC BY 4.0](LICENSE-CC-BY-4.0.txt) |
-| Codex連携0.2.5のコード・テスト・JSON例・同梱手順、文書中のコード例 | [Apache-2.0](LICENSE-APACHE-2.0.txt) |
+| Codex連携0.2.5・0.2.6のコード・テスト・JSON例・同梱手順、文書中のコード例 | [Apache-2.0](LICENSE-APACHE-2.0.txt) |
 | WebのIAP固有の実装 | [Apache-2.0](LICENSE-APACHE-2.0.txt)。対象は[LICENSE.md](LICENSE.md)を参照 |
 | 第三者のライブラリ・テンプレート・アイコン | 元の条件を維持。[第三者表示](THIRD_PARTY_NOTICES.md)を参照 |
 | 名称・ロゴを公式の標識として使うこと | [ブランド方針](BRAND.md)。上記ライセンスは商標権を付与しません |

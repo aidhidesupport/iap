@@ -13,13 +13,13 @@ export default function Developer(){return <Guide title="ひとりで試す。�
   ['Codex連携','案件フォルダーに設定し、Codex CLIの作業中に照合を組み込む。初期設定はターミナル、日常の作業はCodexとの会話とコマンドで進めます。']
 ]}/>
 <p>専用GUIだけで導入から共有まで完結する実装ではありません。別途作った手入力のWeb先行試作は、Codex連携と同期しません。このガイドは配布物の架空例と、検証済みのCLIでの導入手順を扱います。</p>
-<p>最初は下の「ひとりで試す」までで十分です。配布物0.2.5の自動テストと、0.2.4の実Codexによる一連の動作を確認しています。0.2.5での実動作の再確認、他の人の導入、実利用での負担軽減はこれからです。</p><TextLink href="/status">検証した版と、残る確認</TextLink>
+<p>最初は下の「ひとりで試す」までで十分です。0.2.5を実Codexで動かし、作業・再評価・共有・中断復帰まで確認しました。0.2.6は同梱文書のリンクと案内を直した版で、実行コードと記録形式は0.2.5と同一です。0.2.6として実Codex試験を再実施した記録ではありません。他の人の導入や実利用での負担軽減は未検証です。</p><TextLink href="/status">検証した版と、残る確認</TextLink>
 </Section>
-<Section id="before" title="01 — ひとりで架空例を試す"><p>基本実装0.2.5をApache-2.0で配布しています。商用利用に寄付や個別の許可は不要です。<a href={publicAsset("/downloads/iap-codex-0.2.5.tar.gz")} download="iap-codex-0.2.5.tar.gz">ソースとテストをダウンロード</a>し、<a href={publicAsset("/downloads/iap-codex-0.2.5.sha256")}>SHA-256</a>を確認して展開してください。Node.js 22.13以降のmacOS/Linuxが対象です。Codex等の利用環境の費用は各提供者の条件に従います。</p><CodeBlock>{`curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz
-curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256
-shasum -a 256 -c iap-codex-0.2.5.sha256
-tar -xzf iap-codex-0.2.5.tar.gz
-cd iap-codex-0.2.5
+<Section id="before" title="01 — ひとりで架空例を試す"><p>基本実装0.2.6をApache-2.0で配布しています。商用利用に寄付や個別の許可は不要です。<a href={publicAsset("/downloads/iap-codex-0.2.6.tar.gz")} download="iap-codex-0.2.6.tar.gz">ソースとテストをダウンロード</a>し、<a href={publicAsset("/downloads/iap-codex-0.2.6.sha256")}>SHA-256</a>を確認して展開してください。Node.js 22.13以降のmacOS/Linuxが対象です。Codex等の利用環境の費用は各提供者の条件に従います。</p><CodeBlock>{`curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.tar.gz
+curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.sha256
+shasum -a 256 -c iap-codex-0.2.6.sha256
+tar -xzf iap-codex-0.2.6.tar.gz
+cd iap-codex-0.2.6
 npm test
 node checkpoint.mjs observe example
 node checkpoint.mjs verify example`}</CodeBlock><p>追加パッケージは不要です。同梱の架空例は<code>valid: true, ready: false</code>が正常です。チェックサムは破損の確認用です。この段階ではPMの参加やCodexのログインは不要です。</p><h3>ひとりで、共有文と評価の失効を確かめる</h3><p>展開した配布元フォルダーで、例を新しい一時フォルダーへコピーして実行します。既存の案件への導入は行いません。</p><CodeBlock>{`trial_dir="$(mktemp -d)"
@@ -35,7 +35,7 @@ PMの依頼：［依頼の文章］
 対象外：［今回は扱わないこと］
 読むファイル：［案件フォルダーからの相対パス］
 不明な条件は推測で確定せず、確認事項として残してください。`}</CodeBlock></Section>
-<Section id="install" title="03 — 案件フォルダーに配置して、有効化する"><p>展開した<code>iap-codex-0.2.5</code>フォルダーをターミナルで開きます。以下のパスを実際の案件フォルダーと作業記録JSONへ置き換えて実行してください。</p><CodeBlock>{`node manage.mjs install /path/to/project /path/to/contract.json
+<Section id="install" title="03 — 案件フォルダーに配置して、有効化する"><p>展開した<code>iap-codex-0.2.6</code>フォルダーをターミナルで開きます。以下のパスを実際の案件フォルダーと作業記録JSONへ置き換えて実行してください。</p><CodeBlock>{`node manage.mjs install /path/to/project /path/to/contract.json
 node manage.mjs doctor /path/to/project`}</CodeBlock><p>インストーラーが案件内に<code>.iap</code>の記録・照合スクリプト、<code>.codex/hooks.json</code>、<code>AGENTS.md</code>の作業指示を配置します。既存設定を保持し、変更前の内容をバックアップします。</p><p>次に、<strong>その案件フォルダーを対象に</strong>Codex CLIを開き、<code>/hooks</code>でIAPのフックをレビューして信頼します。対象プロジェクトの信頼確認が表示された場合も内容を確認します。新規・変更されたフックは信頼されるまで実行されません。<a href="https://learn.chatgpt.com/docs/hooks#review-and-trust-hooks">OpenAI公式の有効化手順</a></p><div className="callout"><p><strong>配置の確認と、動作の確認は別です。</strong><br/><code>doctor</code>の<code>configured: true</code>は、必要なファイルがそろっていることを示します。導入直後で評価がまだない場合、state.valid: false、assessment_missing_or_invalid、disposition: "unassessed" が併記されても、配置の失敗を意味しません。最後に小さな架空の依頼で、成果変更後の照合と共有文生成が動くことを確認してください。</p></div><p>導入先ごとに確認します。親フォルダーの別のタスクや、別の端末にも有効になったとは扱いません。</p></Section>
 <Section id="work" title="04 — 作業を進め、ずれたら戻る"><ol><li>Codexが依頼と実際の成果を読み、完成条件と対象範囲を照合します。</li><li>範囲内で直せるものは、開発者側で実装・テスト・再確認を進めます。</li><li>目的・完成条件・範囲の変更に判断が必要なら、PMへの確認事項を切り出します。</li><li>評価を保存すると、共有文の下書きも生成されます。</li></ol><p>評価の<code>ready</code>は、条件達成の評価があるという状態です。PMが成果を受け入れたことや、Codexの意味判断が必ず正しいことを保証しません。</p></Section>
 <Section id="share" title="05 — 最新の要約を、PMへ渡す"><p>共有する直前に、<strong>導入先の案件フォルダー</strong>で最新の要約を取得します。古い評価が失効していれば、未評価と表示します。</p><CodeBlock>{`node .iap/checkpoint.mjs share .`}</CodeBlock><p>目的・進捗・残り・次の一手・確認事項を読み、共有先に合わせて表現を整えてから、既存のチャット等へ貼り付けます。成果本文や実行ログは自動転載しませんが、自由記述の自動匿名化ではありません。</p><h3>試用の時間も記録する場合</h3><p>展開した配布元のフォルダーから実行します。<code>first-trial</code>は記録用のID例です。既に作成済みならinitを繰り返さず、shareから使います。</p><CodeBlock>{`node pilot.mjs init /path/to/project first-trial paired

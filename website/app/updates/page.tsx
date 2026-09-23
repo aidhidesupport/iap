@@ -10,24 +10,27 @@ export default function Updates() {
     <Section id="download" title="01 — 現在の配布">
       <DataTable headings={['対象','現在の版・状態']} rows={[
         ['IAPの仕様','0.2-draft。試行と反証から見直す草案。'],
-        ['Codex連携の基本実装','0.2.5。ソース・テスト・架空例を含む試験配布。'],
-        ['GitHub Releases','codex-v0.2.5をpre-releaseとして公開。下記と同じ配布物です。']
+        ['Codex連携の基本実装','0.2.6。ソース・テスト・架空例を含む試験配布。'],
+        ['GitHub Releases','codex-v0.2.6をpre-releaseとして公開。下記と同じ配布物です。']
       ]}/>
-      <p><a href={publicAsset('/downloads/iap-codex-0.2.5.tar.gz')} download="iap-codex-0.2.5.tar.gz">基本実装0.2.5をダウンロード</a> / <a href={publicAsset('/downloads/iap-codex-0.2.5.sha256')}>SHA-256を確認</a> / <a href="https://github.com/aidhidesupport/iap/blob/main/RELEASE_NOTES.md">0.2.5の変更内容</a></p>
-      <p><a href="https://github.com/aidhidesupport/iap/releases/tag/codex-v0.2.5">GitHub Release 0.2.5を確認</a>。添付のtar.gzとSHA-256が手順付きの基本実装です。GitHubの「Source code」はリポジトリ全体のアーカイブです。</p>
+      <p><a href={publicAsset('/downloads/iap-codex-0.2.6.tar.gz')} download="iap-codex-0.2.6.tar.gz">基本実装0.2.6をダウンロード</a> / <a href={publicAsset('/downloads/iap-codex-0.2.6.sha256')}>SHA-256を確認</a> / <a href="https://github.com/aidhidesupport/iap/blob/main/RELEASE_NOTES.md">0.2.6の変更内容</a></p>
+      <p><a href="https://github.com/aidhidesupport/iap/releases/tag/codex-v0.2.6">GitHub Release 0.2.6を確認</a>。添付のtar.gzとSHA-256が手順付きの基本実装です。GitHubの「Source code」はリポジトリ全体のアーカイブです。</p>
       <p>同じ版の配布内容を後から差し替えず、コードや同梱手順を変更した場合は新しい版として案内します。サイトの説明の更新だけで、基本実装の版が変わることはありません。</p>
     </Section>
     <Section id="upgrade" title="02 — 更新する前と、更新した後">
       <ol><li><strong>利用中の版と記録を残す。</strong>対象のCodexセッションを閉じ、契約・案件記録・既存設定を含む案件フォルダーを、アクセスを限定した場所へ退避します。</li>
-      <li><strong>新版の変更点を読む。</strong>対応環境、互換性、移行が必要な記録を確認します。現在より新しい基本実装は、このページでは案内していません。</li>
+      <li><strong>新版の変更点を読む。</strong>対応環境、互換性、移行が必要な記録を確認します。0.2.5から0.2.6は文書修正のみで、実行コードと記録形式は同一です。リンク修正だけが目的なら、既存案件への再導入は不要です。</li>
       <li><strong>別フォルダーで新版を検証する。</strong>配布物のSHA-256、同梱テスト、架空例を確認してから導入します。</li>
       <li><strong>導入して小さく動かす。</strong>新版の同梱手順に従い、配置確認と実際の照合・共有を別々に確認します。競合が出たら止め、手作業の変更を上書きしません。</li></ol>
       <p>問題があれば作業を止め、どの版からどの版へ変更したかを導入相談に記載してください。記録形式が変わる場合、旧コードだけを戻しても復元できるとは限りません。退避した案件一式と新版の移行案内に沿って戻します。</p><TextLink href="/guide/developer#pause">停止・取り外しの手順</TextLink>
     </Section>
-    <Section id="news" title="03 — 活動報告 · 2026年9月23日">
+    <Section id="news" title="03 — 活動報告 · 2026年9月24日更新">
+      <h3>0.2.5の実動作確認と、同梱リンクを直した0.2.6</h3>
+      <p>同じMacの架空案件で、実Codexによる実装・再評価・共有・中断復帰と5種類のフックを確認しました。0.2.6では測定用紙のリンクと案内文書を修正し、実行コード・テスト・記録形式は0.2.5のままです。旧版の配布物も保持しています。</p>
+      <p><a href="https://github.com/aidhidesupport/iap/blob/main/RUNTIME_VALIDATION_2026-09-23.md">実動作の検証記録</a>。別の人の導入、実利用での負担軽減は未検証です。以下は9月23日に行った以前の更新です。</p>
       <h3>試験版の対象と、確認できた範囲を明確にしました。</h3>
       <p>中核機能を実装した試験版として、ターミナルを使える方に架空例から試してもらう位置づけを、ホーム・ガイド・紹介文に揃えました。実装済みの機能と、他の人の導入・実利用の効果を分けて案内しています。</p>
-      <p>配布物0.2.5の自動テストと、0.2.4の実Codexによる一連の動作は別の記録です。最新配布版での実動作の再確認を、次の技術確認として明記しました。今回の変更は説明の更新で、新しい動作試験や機能追加ではありません。</p>
+      <p>配布物0.2.5の自動テストと、0.2.4の実Codexによる一連の動作は別の記録です。この案内更新時点では、最新配布版での実動作の再確認を次の技術確認としていました（上記の検証で完了）。今回の変更は説明の更新で、新しい動作試験や機能追加ではありません。</p>
       <h3>ひとりで試す入口と、使う場所の説明を揃えました。</h3>
       <p>ホームから架空例へ直接進めるようにし、説明サイト・ターミナルでのお試し・Codex連携の違いをガイドとFAQに追加しました。まずはネットで内容を知り、架空例を試し、疑問を改善へ戻す順序で進めます。企業での導入や実案件の確保は、公開活動を始める条件にしていません。</p>
       <p>基本実装0.2.5の配布内容は変更していません。個人開発での継続利用、第三者の導入、実際の負担軽減の検証は、説明の更新とは別に扱います。</p>
