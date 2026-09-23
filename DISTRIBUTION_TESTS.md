@@ -6,7 +6,7 @@
 
 SHA-256：`2363b9d37b217befc4f1cd64455a400d98761c122e20503aeaaddf3924b213b7`。
 
-0.2.5との差分は、README・STATUS・測定用紙・package.jsonの版・生成MANIFESTだけです。実行コード・同梱テスト・架空例のデータは同一で、0.2.5の配布ファイルは変更していません。4環境のCI結果は、この変更の[配布ワークフロー](https://github.com/aidhidesupport/iap/actions/workflows/distribution.yml)で確認できます。
+0.2.5との差分は、README・STATUS・測定用紙・package.jsonの版・生成MANIFESTだけです。実行コード・同梱テスト・架空例のデータは同一で、0.2.5の配布ファイルは変更していません。[PR #9の配布CI](https://github.com/aidhidesupport/iap/actions/runs/35878978859)もLinux・macOS × Node.js 22.13.0・22系の4環境で成功しました。4環境すべてで80件の同梱テストを実行するステップが成功し、配布再現処理と7テストも成功しています。
 
 [0.2.5の実Codex検証](RUNTIME_VALIDATION_2026-09-23.md)は別の試験です。0.2.6で実Codexの一連の動作を再測定した記録ではありません。
 
