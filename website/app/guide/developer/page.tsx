@@ -4,7 +4,7 @@ import { CodeBlock } from '@/components/code-block';
 import { TextLink } from '@/components/site';
 import { publicAsset } from '@/lib/site-path';
 export const metadata = pageMetadata('/guide/developer/');
-export default function Developer(){return <Guide title="ひとりで試す。案件で使う。" label="DEVELOPER GUIDE" lead="まずは自分の端末で、架空例の共有文と評価の失効を確かめられます。その後のCodex連携では、案件に目的と完成条件を記録し、作業中の照合・修正・共有につなげます。" sections={ [['use','どこで、どう使うか'],['before','ひとりで試す'],['agree','依頼を記録する'],['install','配置・有効化する'],['work','作業と確認'],['share','PMへ共有する'],['pause','止める・戻る']] }>
+export default function Developer(){return <Guide title="ひとりで試す。案件で使う。" label="DEVELOPER GUIDE" lead="中核機能を実装した試験版を、まず架空例から試せます。現在の手順は、macOS/Linuxでターミナルのコマンドを実行できる方が対象です。その後のCodex連携では、案件の完成条件と作業中の成果を照合します。" sections={ [['use','どこで、どう使うか'],['before','ひとりで試す'],['agree','依頼を記録する'],['install','配置・有効化する'],['work','作業と確認'],['share','PMへ共有する'],['pause','止める・戻る']] }>
 <Section id="use" title="はじめに — どこで、どう使うか">
 <p>このサイトは説明と配布の入口です。最初のお試しと、Codexを使った案件への導入を分けて案内します。</p>
 <DataTable headings={['使うもの','できること']} rows={[
@@ -13,7 +13,7 @@ export default function Developer(){return <Guide title="ひとりで試す。�
   ['Codex連携','案件フォルダーに設定し、Codex CLIの作業中に照合を組み込む。初期設定はターミナル、日常の作業はCodexとの会話とコマンドで進めます。']
 ]}/>
 <p>専用GUIだけで導入から共有まで完結する実装ではありません。別途作った手入力のWeb先行試作は、Codex連携と同期しません。このガイドは配布物の架空例と、検証済みのCLIでの導入手順を扱います。</p>
-<p>最初は下の「ひとりで試す」までで十分です。自分の個人開発での継続利用や、別々のPM・開発者による負担軽減を確認した試験とは区別しています。</p>
+<p>最初は下の「ひとりで試す」までで十分です。配布物0.2.5の自動テストと、0.2.4の実Codexによる一連の動作を確認しています。0.2.5での実動作の再確認、他の人の導入、実利用での負担軽減はこれからです。</p><TextLink href="/status">検証した版と、残る確認</TextLink>
 </Section>
 <Section id="before" title="01 — ひとりで架空例を試す"><p>基本実装0.2.5をApache-2.0で配布しています。商用利用に寄付や個別の許可は不要です。<a href={publicAsset("/downloads/iap-codex-0.2.5.tar.gz")} download="iap-codex-0.2.5.tar.gz">ソースとテストをダウンロード</a>し、<a href={publicAsset("/downloads/iap-codex-0.2.5.sha256")}>SHA-256</a>を確認して展開してください。Node.js 22.13以降のmacOS/Linuxが対象です。Codex等の利用環境の費用は各提供者の条件に従います。</p><CodeBlock>{`curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz
 curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256
