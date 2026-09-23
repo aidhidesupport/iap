@@ -26,6 +26,10 @@ The developer shares a short summary and asks the PM for decisions that change t
 
 The demo uses a fictional case. It is an explanation, not a recording of a real project's results. Technical checks do not establish reduced workload or better outcomes for real PM/developer pairs.
 
+The website provides guides and downloads. You run the bundled example in your terminal. Installing the Codex integration is a separate step; the documented and tested setup uses Codex CLI. There is no dedicated GUI covering installation through sharing, and the earlier manual web prototype does not synchronize with the Codex integration.
+
+The current outreach sequence is to help individuals discover the proposal online, try the fictional example, and return questions or counterexamples. Real PM/developer pilots remain a later validation step; securing a company pilot is not a prerequisite for this outreach. Trying the example does not establish continued use in personal projects.
+
 ## Get the implementation or contribute
 
 [Download 0.2.5](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz) and its [SHA-256 checksum](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256). The local example requires macOS or Linux and Node.js 22.13 or later. Trying the bundled example does not require a PM, a Codex login, or additional npm packages.

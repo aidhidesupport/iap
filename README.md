@@ -23,6 +23,8 @@ Codex連携はIAPの一つの実装例です。仕様・ガイドと、Apache-2.
 
 ## 読む順序
 
+- [ひとりで架空例を試す](https://aidhidesupport.github.io/iap/guide/developer/#before)：macOS/LinuxとNode.js 22.13以降で、共有文と古い評価の失効を確認。PMの参加やCodexへのログインは不要。
+- [どこで、どう使うか](CODEX_GUIDE.md#どこでどう使うか)：説明サイト、端末で試す配布物、Codex連携の違いを確認。
 - [まず一つの依頼で理解する](QUICKSTART.md)：役割と流れをつかみ、任意で一時フォルダーへの導入・休止・取り外しを試す。
 - [開発者ガイド](CODEX_GUIDE.md)：ダウンロード、導入・確認・共有、停止・取り外し。
 - [PMガイド](PM_GUIDE.md)：依頼に書くこと、共有文の読み方、判断の返し方。
@@ -37,6 +39,8 @@ Codex連携はIAPの一つの実装例です。仕様・ガイドと、Apache-2.
 [基本実装0.2.5](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz) / [開発者ガイド](CODEX_GUIDE.md) / [参加と支援](SUPPORT.md)。まず小さな架空案件から試せます。
 
 ひとりで同梱例を試す段階では、PMの参加やCodexのログインは不要です。[紹介用の短文・出典表記](SHARE.md)と[導入相談の記入用紙](https://github.com/aidhidesupport/iap/issues/new?template=installation.md)も用意しています。
+
+最初のお試しは端末のターミナルで行います。その後、案件にCodex連携を導入する手順はCLI向けです。専用GUIだけで完結する実装ではなく、手入力のWeb先行試作との同期もありません。
 
 ## 提案を育てる
 

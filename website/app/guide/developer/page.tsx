@@ -4,8 +4,18 @@ import { CodeBlock } from '@/components/code-block';
 import { TextLink } from '@/components/site';
 import { publicAsset } from '@/lib/site-path';
 export const metadata = pageMetadata('/guide/developer/');
-export default function Developer(){return <Guide title="案件に導入し、作業の中で使う。" label="DEVELOPER GUIDE" lead="IAP × Codexは、開発者の案件フォルダーに導入するローカルの試作です。PMの依頼を作業記録にし、照合・修正・再確認・共有につなげます。" sections={ [['before','導入する前に'],['agree','依頼を記録する'],['install','配置・有効化する'],['work','作業と確認'],['share','PMへ共有する'],['pause','止める・戻る']] }>
-<Section id="before" title="01 — 導入する前に"><p>基本実装0.2.5をApache-2.0で配布しています。商用利用に寄付や個別の許可は不要です。<a href={publicAsset("/downloads/iap-codex-0.2.5.tar.gz")} download="iap-codex-0.2.5.tar.gz">ソースとテストをダウンロード</a>し、<a href={publicAsset("/downloads/iap-codex-0.2.5.sha256")}>SHA-256</a>を確認して展開してください。macOS/Linuxが対象です。Codex等の利用環境の費用は各提供者の条件に従います。</p><CodeBlock>{`curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz
+export default function Developer(){return <Guide title="ひとりで試す。案件で使う。" label="DEVELOPER GUIDE" lead="まずは自分の端末で、架空例の共有文と評価の失効を確かめられます。その後のCodex連携では、案件に目的と完成条件を記録し、作業中の照合・修正・共有につなげます。" sections={ [['use','どこで、どう使うか'],['before','ひとりで試す'],['agree','依頼を記録する'],['install','配置・有効化する'],['work','作業と確認'],['share','PMへ共有する'],['pause','止める・戻る']] }>
+<Section id="use" title="はじめに — どこで、どう使うか">
+<p>このサイトは説明と配布の入口です。最初のお試しと、Codexを使った案件への導入を分けて案内します。</p>
+<DataTable headings={['使うもの','できること']} rows={[
+  ['このWebサイト','ガイドと99秒デモを見る。ページを開くだけでは案件に導入されません。'],
+  ['配布物の架空例','端末のターミナルで、成果の観測・共有文・古い評価の失効をひとりで確かめる。PMの参加やCodexへのログインは不要です。'],
+  ['Codex連携','案件フォルダーに設定し、Codex CLIの作業中に照合を組み込む。初期設定はターミナル、日常の作業はCodexとの会話とコマンドで進めます。']
+]}/>
+<p>専用GUIだけで導入から共有まで完結する実装ではありません。別途作った手入力のWeb先行試作は、Codex連携と同期しません。このガイドは配布物の架空例と、検証済みのCLIでの導入手順を扱います。</p>
+<p>最初は下の「ひとりで試す」までで十分です。自分の個人開発での継続利用や、別々のPM・開発者による負担軽減を確認した試験とは区別しています。</p>
+</Section>
+<Section id="before" title="01 — ひとりで架空例を試す"><p>基本実装0.2.5をApache-2.0で配布しています。商用利用に寄付や個別の許可は不要です。<a href={publicAsset("/downloads/iap-codex-0.2.5.tar.gz")} download="iap-codex-0.2.5.tar.gz">ソースとテストをダウンロード</a>し、<a href={publicAsset("/downloads/iap-codex-0.2.5.sha256")}>SHA-256</a>を確認して展開してください。Node.js 22.13以降のmacOS/Linuxが対象です。Codex等の利用環境の費用は各提供者の条件に従います。</p><CodeBlock>{`curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz
 curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256
 shasum -a 256 -c iap-codex-0.2.5.sha256
 tar -xzf iap-codex-0.2.5.tar.gz
