@@ -43,11 +43,11 @@ Routine work can continue without waiting for a reply to this update. The PM's a
 Use macOS or Linux with Node.js 22.13 or later. Run these commands in a new, empty folder. No PM, Codex login, or additional npm packages are needed for this check.
 
 ```sh
-curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz
-curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256
-shasum -a 256 -c iap-codex-0.2.5.sha256
-tar -xzf iap-codex-0.2.5.tar.gz
-cd iap-codex-0.2.5
+curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.tar.gz
+curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.sha256
+shasum -a 256 -c iap-codex-0.2.6.sha256
+tar -xzf iap-codex-0.2.6.tar.gz
+cd iap-codex-0.2.6
 npm test
 node checkpoint.mjs observe example
 node checkpoint.mjs verify example
@@ -60,7 +60,7 @@ These commands check the fixture and generate local records. They do not install
 
 ## 5. Optionally try installation, pausing, and removal
 
-Continue from the extracted `iap-codex-0.2.5` folder. This creates a separate temporary project containing only the fictional artifact. No PM or Codex login is needed to check these local operations.
+Continue from the extracted `iap-codex-0.2.6` folder. This creates a separate temporary project containing only the fictional artifact. No PM or Codex login is needed to check these local operations.
 
 ```sh
 iap_trial=$(mktemp -d)

@@ -4,13 +4,13 @@ English / [日本語](README.md)
 
 **A proposal from partial-standards for making the conditions of collaboration explicit.**
 
-Maintained and edited by [@aidhidesupport](https://github.com/aidhidesupport). Specification: 0.2-draft. Basic implementation: 0.2.5. Updated: 2026-09-23.
+Maintained and edited by [@aidhidesupport](https://github.com/aidhidesupport). Specification: 0.2-draft. Basic implementation: 0.2.6. Updated: 2026-09-24.
 
 IAP is a draft specification for agreeing on goals, completion criteria, communication, checks, and how to pause and resume work. It aims to preserve a person's choices when working with other people, AI, and services. It grew out of difficulties experienced by people with neurodevelopmental differences. Using it does not require disclosing a diagnosis or an IQ score.
 
 The proposal is published as part of partial-standards. The Codex integration is an experimental release with the core workflow implemented: checking completion criteria, correcting and checking again, drafting a summary, invalidating stale assessments, and pausing or resuming. The current trial is intended for people who can run terminal commands on macOS or Linux. You can start with the bundled fictional example.
 
-Installation by other people and reduced workload in real projects remain unverified. Release 0.2.5 passed 80 distribution tests in each of four environments. The full workflow with actual Codex was checked in 0.2.4; repeating it with 0.2.5 remains a next technical check. See [evidence and limitations](STATUS.md). IAP is a draft proposal, not an adopted standard or an official MCP extension.
+Installation by other people and reduced workload in real projects remain unverified. Release 0.2.5 passed 80 distribution tests in each of four environments, and its actual Codex workflow was checked on one Mac: implementation, reassessment, sharing, pause/resume, and interruption/recovery. Release 0.2.6 corrects bundled documentation links and updates guidance; its runtime code and record formats are unchanged. The actual Codex test was not repeated under version 0.2.6. See [evidence and limitations](STATUS.md). IAP is a draft proposal, not an adopted standard or an official MCP extension.
 
 ## The first example: a PM, a developer, and Codex
 
@@ -38,7 +38,7 @@ The current outreach sequence is to help individuals discover the proposal onlin
 
 [Short feedback](https://github.com/aidhidesupport/iap/issues/new?template=experience.md) is welcome even if you only read the guide or stopped partway through. [Feedback handling](FEEDBACK.md) (Japanese) separates discovery, understanding, trying, reuse, and reported effects; unmeasured results are not counted as zero.
 
-[Download 0.2.5](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz) and its [SHA-256 checksum](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256). The local example requires macOS or Linux and Node.js 22.13 or later. Trying the bundled example does not require a PM, a Codex login, or additional npm packages.
+[Download 0.2.6](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.tar.gz) and its [SHA-256 checksum](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.sha256). The local example requires macOS or Linux and Node.js 22.13 or later. Trying the bundled example does not require a PM, a Codex login, or additional npm packages.
 
 Browse the [implementation and tests](codex/) or the [website source](website/). [Contributing instructions](CONTRIBUTING.md#development-and-contributions) explain how to run checks and submit changes. Questions, unclear requirements, installation problems, and small fictional counterexamples are welcome in [Issues](https://github.com/aidhidesupport/iap/issues). Do not include customer material, private logs, credentials, or personal information.
 

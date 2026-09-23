@@ -52,7 +52,7 @@ LLMに処理を任せる場合も、記録された版や権限が有効かは�
 
 ## 現在のファイル形式と互換性
 
-基本実装0.2.5では`iap-codex-contract/0.1`、`iap-codex-observation/0.1`、`iap-codex-assessment/0.1`などを使います。仕様の`0.2-draft`と、実装の`0.2.5`と、各ファイル形式の`0.1`は別の版です。
+基本実装0.2.6では`iap-codex-contract/0.1`、`iap-codex-observation/0.1`、`iap-codex-assessment/0.1`などを使います。仕様の`0.2-draft`と、実装の`0.2.6`と、各ファイル形式の`0.1`は別の版です。
 
 これらは現在の実装で使う形式です。複数の独立実装間で互換性を確認済みの交換規格ではありません。実装を参考に独自形式を作る場合は、違い、読み込めない必須項目、移行方法を明示します。実際に交換を検査するまでは、他の実装と相互運用できるとは表示しません。
 
@@ -70,4 +70,4 @@ LLMに処理を任せる場合も、記録された版や権限が有効かは�
 
 ## For independent implementers
 
-The specification is `0.2-draft`; the reference implementation is `0.2.5`. Its `iap-codex-*/0.1` file formats are implementation formats, not a demonstrated cross-implementation interchange standard. Document supported requirement IDs, unimplemented behavior, test inputs and results. Partial implementation is not full Core or Execution conformance. Assessment is separate from the PM accepting the work, and generating a draft is separate from sending it. Use the [implementation issue template](https://github.com/aidhidesupport/iap/issues/new?template=implementation.md) to discuss a small fictional example. This project does not currently provide third-party certification.
+The specification is `0.2-draft`; the reference implementation is `0.2.6`. Its `iap-codex-*/0.1` file formats are implementation formats, not a demonstrated cross-implementation interchange standard. Document supported requirement IDs, unimplemented behavior, test inputs and results. Partial implementation is not full Core or Execution conformance. Assessment is separate from the PM accepting the work, and generating a draft is separate from sending it. Use the [implementation issue template](https://github.com/aidhidesupport/iap/issues/new?template=implementation.md) to discuss a small fictional example. This project does not currently provide third-party certification.

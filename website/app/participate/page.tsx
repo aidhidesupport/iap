@@ -18,7 +18,7 @@ export default function Participate() {
       <p>IAP側の基本実装の利用料はありません。Codex等の利用環境の費用は、各提供者の条件に従います。</p>
     </Section>
     <Section id="try" title="02 — 実案件がなくても、試して参加できる">
-      <p><a href={publicAsset('/downloads/iap-codex-0.2.5.tar.gz')} download="iap-codex-0.2.5.tar.gz">基本実装0.2.5を入手</a>し、同梱の架空例で照合と共有文を確認できます。この最初のお試しにはPMの参加やCodexのログインは不要です。Node.js 22.13以降のmacOS/Linux環境を用意してください。</p>
+      <p><a href={publicAsset('/downloads/iap-codex-0.2.6.tar.gz')} download="iap-codex-0.2.6.tar.gz">基本実装0.2.6を入手</a>し、同梱の架空例で照合と共有文を確認できます。この最初のお試しにはPMの参加やCodexのログインは不要です。Node.js 22.13以降のmacOS/Linux環境を用意してください。</p>
       <p>Linux・macOSと2つのNode.js環境で、配布物の80テストがそれぞれ成功しています。<a href="https://github.com/aidhidesupport/iap/blob/main/DISTRIBUTION_TESTS.md">検証結果と対象範囲</a>。実案件での負担軽減は、これから確かめる段階です。</p>
       <p>便利だった点だけでなく、入力の手間、誤警告、分かりにくい共有も改善材料になります。小さな架空例を<a href="https://github.com/aidhidesupport/iap/issues">GitHubのIssue</a>へ。文章・コードの改善や翻訳は<a href="https://github.com/aidhidesupport/iap/blob/main/CONTRIBUTING.md">寄稿の案内</a>を確認してください。</p>
       <p>活動を紹介するときは、<a href="https://github.com/aidhidesupport/iap/blob/main/SHARE.md">そのまま使える紹介文と出典表記</a>も利用できます。</p>

@@ -1,10 +1,10 @@
 # 開発者ガイド — 導入から共有まで
 
-2026-09-23 / Codex連携のローカル試作0.2.5
+2026-09-24 / Codex連携のローカル試作0.2.6
 
 中核機能を実装した試験版のソース・テストをApache-2.0で配布しています。現在の手順は、macOS/Linuxでターミナルのコマンドを実行できる方が対象です。商用でも利用でき、寄付や個別の許可は不要です。この文書を開いただけでは、案件への導入やフックの有効化は行われません。
 
-配布物0.2.5の自動テストと、0.2.4の実Codexによる一連の動作を確認しています。0.2.5での実動作の再確認、他の人の導入、実利用の負担軽減はこれからです。[検証範囲](STATUS.md)を確認したうえで、まず架空例から試せます。
+0.2.5を実Codexで動かし、作業・再評価・共有・中断復帰まで確認しました。0.2.6は同梱文書のリンクと案内を直した版で、実行コードと記録形式は0.2.5と同一です。0.2.6として実Codex試験を再実施した記録ではありません。他の人の導入や実利用での負担軽減は未検証です。[検証範囲](STATUS.md)を確認したうえで、まず架空例から試せます。
 
 ## どこで、どう使うか
 
@@ -20,14 +20,14 @@
 
 ## 入手して確かめる
 
-[0.2.5をダウンロード](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz) / [SHA-256](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256)。macOS/Linux、Node.js 22.13以降が対象です。端末上で次のように展開できます。
+[0.2.6をダウンロード](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.tar.gz) / [SHA-256](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.sha256)。macOS/Linux、Node.js 22.13以降が対象です。端末上で次のように展開できます。
 
 ```sh
-curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz
-curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256
-shasum -a 256 -c iap-codex-0.2.5.sha256
-tar -xzf iap-codex-0.2.5.tar.gz
-cd iap-codex-0.2.5
+curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.tar.gz
+curl -fLO https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.6.sha256
+shasum -a 256 -c iap-codex-0.2.6.sha256
+tar -xzf iap-codex-0.2.6.tar.gz
+cd iap-codex-0.2.6
 npm test
 node checkpoint.mjs observe example
 node checkpoint.mjs verify example
@@ -47,7 +47,7 @@ PMから目的・完成条件・対象外を受け取り、開発者とCodexが 
 
 ## 配置と有効化
 
-展開した `iap-codex-0.2.5` フォルダーで、例のパスを実際のパスへ置き換えて実行します。
+展開した `iap-codex-0.2.6` フォルダーで、例のパスを実際のパスへ置き換えて実行します。
 
 ```sh
 node manage.mjs install /path/to/project /path/to/contract.json

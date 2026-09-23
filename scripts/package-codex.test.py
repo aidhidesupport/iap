@@ -77,10 +77,10 @@ class PackagingTests(unittest.TestCase):
     def test_new_version_can_be_written_separately(self):
         path = self.source / "package.json"
         package = json.loads(path.read_text())
-        package["version"] = "0.2.6"
+        package["version"] = "0.2.7"
         path.write_text(json.dumps(package, indent=2) + "\n")
         name, data, checksum = pack.build(self.source)
-        self.assertEqual(name, "iap-codex-0.2.6")
+        self.assertEqual(name, "iap-codex-0.2.7")
         output = self.root / "new-release"
         pack.write_release(output, name, data, checksum)
         self.assertEqual((output / (name + ".tar.gz")).read_bytes(), data)

@@ -49,4 +49,4 @@
 - 開発者・PMそれぞれの「次も使うか」と理由。未回答は未回答のまま。
 - 比較できる同程度の案件と根拠。なければ削減率を出さない。
 
-[測定手順](../../interaction-protocol/FIRST_PILOT_PACKET.md#共有の測定手順) / [コマンドと記録形式](../README.md#実案件の測定を残す)
+[測定手順](https://github.com/aidhidesupport/iap/blob/main/PILOT_RUNBOOK.md) / [コマンドと記録形式](../README.md#作業と共有)
