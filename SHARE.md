@@ -27,6 +27,9 @@ IAPはpartial-standardsの活動として提案している仕様草案です。
 | PMとして依頼・確認したい | https://aidhidesupport.github.io/iap/guide/pm/ |
 | 再利用条件や参加方法を知りたい | https://aidhidesupport.github.io/iap/participate/ |
 | 確認済みの範囲を知りたい | https://aidhidesupport.github.io/iap/status/ |
+| 完成条件・途中確認・再開の例を読みたい | https://github.com/aidhidesupport/iap/blob/main/USE_CASES.md |
+| 読んだ・試した感想を一言で残したい | https://github.com/aidhidesupport/iap/issues/new?template=experience.md |
+| 別の道具に取り入れたい | https://github.com/aidhidesupport/iap/blob/main/IMPLEMENTERS.md |
 
 ## 文書を転載・改変するときの表示例
 
