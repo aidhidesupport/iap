@@ -47,3 +47,14 @@ Vendored UI components, use-mobile.ts and utils.ts originate from the shadcn-bas
 Lucide includes ISC and MIT notices, both retained in the collected text. No third-party font files are bundled. macOS system speech is excluded from the current public demo; see [PROVENANCE.md](PROVENANCE.md).
 
 Sites scaffolding and configuration retain their original terms and are not claimed as exclusively authored by this project. The IAP-specific Apache license scope is enumerated in [LICENSE.md](LICENSE.md).
+
+## Demo background music (2026-09-24)
+
+"Inspired" Kevin MacLeod (incompetech.com)
+Licensed under [Creative Commons: By Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/).
+
+- [Original track](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1600022) (ISRC USUAN1600022)
+- [Licensing information](https://incompetech.com/music/royalty-free/licenses/)
+- Changes: first 99 seconds, volume adjustment (target -24 LUFS), 1.5-second fade-in, 5-second fade-out, AAC conversion and synchronization with the IAP demo.
+- The soundtrack contains only this instrumental music. It contains no narration or macOS system speech.
+- The music remains Kevin MacLeod's work under CC BY 4.0; it is not IAP-authored music. Keep its credit and license when sharing the video.
