@@ -4,6 +4,8 @@
 
 ## 試して報告する
 
+読んだ印象や途中で止まった点だけなら、[短い感想](https://github.com/aidhidesupport/iap/issues/new?template=experience.md)から一言で残せます。[フィードバックの扱い](FEEDBACK.md)も確認できます。新しい実装・連携を考えている方は[実装者向けガイド](IMPLEMENTERS.md)を参照してください。
+
 1. 使った版と、仕様の章・要件番号またはコマンドを書く。
 2. 期待した結果と実際の結果を書く。
 3. 再現に必要な小さな架空例を添える。
@@ -43,7 +45,7 @@ python3 scripts/package-codex.test.py
 
 ルートのガイドは現行の案内、`codex/`内の同梱ガイドはその配布版の一部です。ルートの文章を直すだけで旧配布物を再作成しません。配布版に手順の修正を届けるときは、同梱ガイドも更新して新しい版に含めます。
 
-0.2.5の`codex/example/paired-session.md`には、配布物に含まれない開発用の測定文書への相対リンクが1件残っています。現在の公開手順は[試用手順](PILOT_RUNBOOK.md)と[基本実装の測定コマンド](codex/README.md#実案件の測定を残す)を参照してください。既存0.2.5は保持し、同梱リンク自体の訂正は次の配布版に含めます。
+0.2.5の`codex/example/paired-session.md`には、配布物に含まれない開発用の測定文書への相対リンクが1件残っています。現在の公開手順は[試用手順](PILOT_RUNBOOK.md)と[基本実装の測定コマンド](codex/README.md#作業と共有)を参照してください。既存0.2.5は保持し、同梱リンク自体の訂正は次の配布版に含めます。
 
 ## Development and contributions
 
@@ -51,7 +53,7 @@ Use Node.js 22.13 or later on macOS/Linux. The implementation in [codex/](codex/
 
 Edit the normal source files and submit a PR describing the target version, the problem, the change, and checks performed. Keep published archives unchanged. A change to bundled files requires a new implementation version and matching distribution files; the root guides can be updated independently. Examples should be fictional and contain no private project records.
 
-The 0.2.5 fixture `codex/example/paired-session.md` retains one relative link to a development-only measurement document that is not bundled. Use the published [trial runbook](PILOT_RUNBOOK.md) and [measurement commands](codex/README.md#実案件の測定を残す) instead (Japanese). Correct the bundled link in the next distribution version; keep 0.2.5 unchanged.
+The 0.2.5 fixture `codex/example/paired-session.md` retains one relative link to a development-only measurement document that is not bundled. Use the published [trial runbook](PILOT_RUNBOOK.md) and [measurement commands](codex/README.md#作業と共有) instead (Japanese). Correct the bundled link in the next distribution version; keep 0.2.5 unchanged.
 
 Contribute under the existing license of each affected file, only where you are authorized to do so. The [PR template](.github/PULL_REQUEST_TEMPLATE.md) asks for your preferred credit (a handle is enough), known third-party sources and terms, and AI assistance. This does not transfer your copyright. No additional commercial relicensing permission is requested. Reporting an issue alone is not agreement to incorporate its text under another license.
 

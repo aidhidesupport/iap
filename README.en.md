@@ -20,6 +20,8 @@ The developer shares a short summary and asks the PM for decisions that change t
 
 ## Start here
 
+- [Three fictional use cases](USE_CASES.md) (Japanese): completion criteria, intermediate checks, and resuming work.
+- [Independent implementers](IMPLEMENTERS.md#for-independent-implementers): scope, requirement IDs, and compatibility limits.
 - [Quickstart in English](QUICKSTART.en.md): a fictional request, each person's role, and local checks, with optional installation, pausing, and removal in a temporary folder.
 - [Website, role guides and 99-second demo](https://aidhidesupport.github.io/iap/) (Japanese).
 - [Developer guide](CODEX_GUIDE.md) and [PM guide](PM_GUIDE.md) (Japanese).
@@ -33,6 +35,8 @@ The website provides guides and downloads. You run the bundled example in your t
 The current outreach sequence is to help individuals discover the proposal online, try the fictional example, and return questions or counterexamples. Real PM/developer pilots remain a later validation step; securing a company pilot is not a prerequisite for this outreach. Trying the example does not establish continued use in personal projects.
 
 ## Get the implementation or contribute
+
+[Short feedback](https://github.com/aidhidesupport/iap/issues/new?template=experience.md) is welcome even if you only read the guide or stopped partway through. [Feedback handling](FEEDBACK.md) (Japanese) separates discovery, understanding, trying, reuse, and reported effects; unmeasured results are not counted as zero.
 
 [Download 0.2.5](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.tar.gz) and its [SHA-256 checksum](https://aidhidesupport.github.io/iap/downloads/iap-codex-0.2.5.sha256). The local example requires macOS or Linux and Node.js 22.13 or later. Trying the bundled example does not require a PM, a Codex login, or additional npm packages.
 
