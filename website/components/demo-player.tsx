@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import type { CSSProperties } from 'react';
+import { ArrowUpRight, Captions, ChevronDown, Pause, Play, Volume2, VolumeX } from 'lucide-react';
 import { publicAsset } from '@/lib/site-path';
 
 const revision = '20260924-diagram';
@@ -65,20 +67,32 @@ export function DemoPlayer() {
     </video>
     {enhanced && <>
       <div className="demo-playback" role="group" aria-label="動画の再生操作">
-        <button type="button" onClick={togglePlayback} aria-label={playing ? '動画を一時停止' : '動画を再生'}>{playing ? '一時停止' : '再生'}</button>
-        <input type="range" min="0" max={duration} step="0.1" value={position}
+        <button className="demo-play-button" type="button" onClick={togglePlayback}
+          aria-label={playing ? '動画を一時停止' : '動画を再生'} title={playing ? '一時停止' : '再生'}>
+          {playing ? <Pause size={18} fill="currentColor" aria-hidden="true"/> : <Play size={18} fill="currentColor" aria-hidden="true"/>}
+        </button>
+        <input className="demo-seek" type="range" min="0" max={duration} step="0.1" value={position}
+          style={{ '--demo-progress': `${duration > 0 ? position / duration * 100 : 0}%` } as CSSProperties}
           aria-label="再生位置（秒）" aria-valuetext={`${formatTime(position)} / ${formatTime(duration)}`}
           onChange={event => seek(Number(event.target.value))}/>
-        <output aria-label="再生時間" aria-live="off">{formatTime(position)} / {formatTime(duration)}</output>
-        <button type="button" aria-pressed={muted} aria-label="動画の音声をミュート"
-          onClick={() => { if (film.current) film.current.muted = !film.current.muted; }}>音声：{muted ? 'オフ' : 'オン'}</button>
+        <output aria-label="再生時間" aria-live="off"><span>{formatTime(position)}</span><span className="demo-duration"> / {formatTime(duration)}</span></output>
+        <button className="demo-icon-button" type="button" aria-pressed={muted} aria-label="動画の音声をミュート"
+          title={muted ? '音声をオンにする' : '音声をオフにする'}
+          onClick={() => { if (film.current) film.current.muted = !film.current.muted; }}>
+          {muted ? <VolumeX size={20} aria-hidden="true"/> : <Volume2 size={20} aria-hidden="true"/>}
+        </button>
+        <button className="demo-caption-button" type="button" aria-pressed={captions}
+          aria-label={`字幕：${captions ? 'オン' : 'オフ'}`} title={captions ? '補助字幕をオフにする' : '補助字幕をオンにする'} onClick={toggleCaptions}>
+          <Captions size={20} aria-hidden="true"/><span>字幕</span>
+        </button>
       </div>
       <div className="demo-options">
-        <label>場面 <select aria-label="場面を選んで移動" value={chapter} onChange={event => seek(Number(event.target.value))}>
-          {chapters.map(([time, label]) => <option key={time} value={time}>{formatTime(time)} {label}</option>)}
-        </select></label>
-        <button type="button" aria-pressed={captions} onClick={toggleCaptions}>字幕：{captions ? 'オン' : 'オフ'}</button>
-        <a href={demoVideo}>動画ファイルを開く</a>
+        <label className="demo-chapter"><span>場面</span><span className="demo-chapter-field">
+          <select aria-label="場面を選んで移動" value={chapter} onChange={event => seek(Number(event.target.value))}>
+            {chapters.map(([time, label]) => <option key={time} value={time}>{formatTime(time)} {label}</option>)}
+          </select><ChevronDown size={15} aria-hidden="true"/>
+        </span></label>
+        <a href={demoVideo} aria-label="動画ファイルを開く">動画を開く<ArrowUpRight size={15} aria-hidden="true"/></a>
       </div>
     </>}
     {error && <p role="alert" className="demo-error">{error} <a href={demoVideo}>動画ファイルを開く</a></p>}
