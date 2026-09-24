@@ -16,7 +16,7 @@ IAPはpartial-standardsの活動として提案している仕様草案です。
 >
 > 仕様・ガイドはCC BY 4.0、基本実装はApache-2.0。商用利用にも個別の許可や寄付は不要です。診断の開示は利用条件ではありません。実案件での時間削減や負担軽減は、これから確かめる段階です。
 >
-> 提案・役割別ガイド・2分3秒の字幕付き紹介動画：https://aidhidesupport.github.io/iap/
+> 提案・役割別ガイド・2分12秒の字幕付き紹介動画：https://aidhidesupport.github.io/iap/
 
 ## 紹介先に合わせたリンク
 
