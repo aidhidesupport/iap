@@ -55,6 +55,6 @@ Licensed under [Creative Commons: By Attribution 4.0 License](https://creativeco
 
 - [Original track](https://incompetech.com/music/royalty-free/index.html?isrc=USUAN1600022) (ISRC USUAN1600022)
 - [Licensing information](https://incompetech.com/music/royalty-free/licenses/)
-- Changes: first 123 seconds, volume adjustment (target -24 LUFS), 1.5-second fade-in, 5-second fade-out, AAC conversion and synchronization with the IAP demo.
+- Changes: first 132 seconds, volume adjustment (target -24 LUFS), 1.5-second fade-in, 5-second fade-out, AAC conversion and synchronization with the IAP demo.
 - The soundtrack contains only this instrumental music. It contains no narration or macOS system speech.
 - The music remains Kevin MacLeod's work under CC BY 4.0; it is not IAP-authored music. Keep its credit and license when sharing the video.
