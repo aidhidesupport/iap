@@ -1,0 +1,41 @@
+{
+  "format": "iap-codex-assessment/0.1",
+  "observationId": "d4f989b00efb65ecf0c82292a3f1e52e166f55ec1ed9a459ea216323ac5d1b6c",
+  "revision": 1,
+  "disposition": "revise",
+  "nextAction": "ログイン画面の設計をいったん止め、CSVの不正値処理へ戻る。abcを0円扱いせず、行番号付きエラーで止めて再テストする。",
+  "checks": [
+    {
+      "id": "C1",
+      "result": "met",
+      "reason": "正常入力の実行で600円を表示した。",
+      "evidence": [
+        {
+          "file": "test-results.txt",
+          "quote": "valid.csv\nexit: 0\nstdout: 合計: 600円"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "result": "not_met",
+      "reason": "不正入力が終了コード0・合計400円で成功しており、期待する停止と一致しない。",
+      "evidence": [
+        {
+          "file": "test-results.txt",
+          "quote": "invalid.csv\nexit: 0\nstdout: 合計: 400円\nstderr: (empty)"
+        }
+      ]
+    }
+  ],
+  "scope": {
+    "result": "outside",
+    "reason": "本人の作業記録は対象外のログイン設計を優先している。",
+    "evidence": [
+      {
+        "file": "work-note.txt",
+        "quote": "本人はログイン画面の設計を先に進めている。CSVの不正値処理はまだ直していない。"
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "format": "iap-codex-observation/0.1",
+  "observationId": "d4f989b00efb65ecf0c82292a3f1e52e166f55ec1ed9a459ea216323ac5d1b6c",
+  "contractHash": "db837ebb7478a37703cc2f861e183d00b096f5c0e4497eb21e3ef7153652908f",
+  "revision": 1,
+  "observedAt": "2026-09-27T18:17:19.030Z",
+  "contract": {
+    "format": "iap-codex-contract/0.1",
+    "revision": 1,
+    "purpose": "CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。",
+    "request": "正常入力100・200・300は600円。不正な金額はデータ行番号を示して停止し、合計を出さない。ログイン・DBの追加は対象外。",
+    "criteria": [
+      {
+        "id": "C1",
+        "text": "100・200・300の合計が600円になる。"
+      },
+      {
+        "id": "C2",
+        "text": "abcを含むデータ2行目をエラーにし、合計を出さない。"
+      }
+    ],
+    "excluded": [
+      "ログイン画面の設計",
+      "DB保存"
+    ],
+    "files": [
+      "sum.mjs",
+      "work-note.txt",
+      "test-results.txt"
+    ],
+    "nextAction": "CSV集計の不正な金額の扱いを直し、2つの入力を再確認する。"
+  },
+  "files": [
+    {
+      "path": "sum.mjs",
+      "status": "observed",
+      "sha256": "81c40e583b38512bad1f49bbb352ffb1c7848330e6dea06ef7a21c8d315574ea",
+      "content": "import fs from 'node:fs';\nconst rows = fs.readFileSync(process.argv[2], 'utf8').trimEnd().split(/\\r?\\n/).slice(1);\nconst total = rows.reduce((sum, row) => sum + (Number(row) || 0), 0);\nconsole.log('合計: ' + total + '円');\n"
+    },
+    {
+      "path": "work-note.txt",
+      "status": "observed",
+      "sha256": "5894222bf99eaf2e33d9395677f118602d25719b89c03276ab223da505c9998a",
+      "content": "説明用の架空記録。本人はログイン画面の設計を先に進めている。CSVの不正値処理はまだ直していない。\n"
+    },
+    {
+      "path": "test-results.txt",
+      "status": "observed",
+      "sha256": "4bf78a1f66e7f6a4ba464d5f0e7727e5746eab68c4c77d6805296e8ee5771b01",
+      "content": "valid.csv\nexit: 0\nstdout: 合計: 600円\nstderr: (empty)\n\ninvalid.csv\nexit: 0\nstdout: 合計: 400円\nstderr: (empty)\n"
+    }
+  ]
+}

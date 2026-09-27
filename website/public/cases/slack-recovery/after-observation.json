@@ -1,0 +1,53 @@
+{
+  "format": "iap-codex-observation/0.1",
+  "observationId": "da1c6877623ef2b7ad38ec60db3bd951cccaf2901456e924b8bcd0860526b3fb",
+  "contractHash": "db837ebb7478a37703cc2f861e183d00b096f5c0e4497eb21e3ef7153652908f",
+  "revision": 1,
+  "observedAt": "2026-09-27T18:17:19.305Z",
+  "contract": {
+    "format": "iap-codex-contract/0.1",
+    "revision": 1,
+    "purpose": "CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。",
+    "request": "正常入力100・200・300は600円。不正な金額はデータ行番号を示して停止し、合計を出さない。ログイン・DBの追加は対象外。",
+    "criteria": [
+      {
+        "id": "C1",
+        "text": "100・200・300の合計が600円になる。"
+      },
+      {
+        "id": "C2",
+        "text": "abcを含むデータ2行目をエラーにし、合計を出さない。"
+      }
+    ],
+    "excluded": [
+      "ログイン画面の設計",
+      "DB保存"
+    ],
+    "files": [
+      "sum.mjs",
+      "work-note.txt",
+      "test-results.txt"
+    ],
+    "nextAction": "CSV集計の不正な金額の扱いを直し、2つの入力を再確認する。"
+  },
+  "files": [
+    {
+      "path": "sum.mjs",
+      "status": "observed",
+      "sha256": "175b9b7f0e8e6278b2e2601af98eecb010526de5123581b8ac84bca4fe5afd46",
+      "content": "import fs from 'node:fs';\nconst rows = fs.readFileSync(process.argv[2], 'utf8').trimEnd().split(/\\r?\\n/).slice(1);\nlet total = 0;\nfor (const [index, raw] of rows.entries()) {\n  const value = raw.trim();\n  if (!/^\\d+$/.test(value) || !Number.isSafeInteger(Number(value))) {\n    console.error('エラー: データ' + (index + 1) + '行目の金額が不正です');\n    process.exit(1);\n  }\n  total += Number(value);\n  if (!Number.isSafeInteger(total)) {\n    console.error('エラー: 合計が安全に扱える整数の範囲を超えています');\n    process.exit(1);\n  }\n}\nconsole.log('合計: ' + total + '円');\n"
+    },
+    {
+      "path": "work-note.txt",
+      "status": "observed",
+      "sha256": "ac1b8411eaefa356b5f21e1b790db5ed6b178f52a943659dfb71b258b118ca6d",
+      "content": "説明用の架空記録。ログイン画面の設計を保留し、依頼されたCSVの金額検証に作業を戻した。ログイン・DBは実装していない。\n"
+    },
+    {
+      "path": "test-results.txt",
+      "status": "observed",
+      "sha256": "b090b70a5a87a6508f7dd9588d109f65214f886e70e6bf8753c688de78abf6c1",
+      "content": "valid.csv\nexit: 0\nstdout: 合計: 600円\nstderr: (empty)\n\ninvalid.csv\nexit: 1\nstdout: (empty)\nstderr: エラー: データ2行目の金額が不正です\n"
+    }
+  ]
+}

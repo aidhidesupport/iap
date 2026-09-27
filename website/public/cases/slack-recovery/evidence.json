@@ -1,0 +1,155 @@
+{
+  "generatedAt": "2026-09-27T18:17:19.429Z",
+  "caseType": "fictional-reproducible-cli-case",
+  "iapVersion": "0.2.6",
+  "nodeVersion": "v22.14.0",
+  "checkpointSha256": "8fd95111f4cb967a9be176caaee430455297abdf567f7b378b145b65445f8ec6",
+  "limitations": [
+    "Slackの会話と本人の作業記録は説明用の再現。Slackへの送信は行っていない。",
+    "評価は例に対して作成したもので、IAPは引用・条件・版の対応を検証する。意味判断の自動精度を測る試験ではない。",
+    "CLIを直接呼び出した検証。フックによる自動起動や本人の行動変化・負担軽減は今回測定していない。",
+    "サンプルは非負整数の金額1列のみ。一般的なCSVパーサーではない。"
+  ],
+  "contract": {
+    "format": "iap-codex-contract/0.1",
+    "revision": 1,
+    "purpose": "CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。",
+    "request": "正常入力100・200・300は600円。不正な金額はデータ行番号を示して停止し、合計を出さない。ログイン・DBの追加は対象外。",
+    "criteria": [
+      {
+        "id": "C1",
+        "text": "100・200・300の合計が600円になる。"
+      },
+      {
+        "id": "C2",
+        "text": "abcを含むデータ2行目をエラーにし、合計を出さない。"
+      }
+    ],
+    "excluded": [
+      "ログイン画面の設計",
+      "DB保存"
+    ],
+    "files": [
+      "sum.mjs",
+      "work-note.txt",
+      "test-results.txt"
+    ],
+    "nextAction": "CSV集計の不正な金額の扱いを直し、2つの入力を再確認する。"
+  },
+  "beforeCode": "import fs from 'node:fs';\nconst rows = fs.readFileSync(process.argv[2], 'utf8').trimEnd().split(/\\r?\\n/).slice(1);\nconst total = rows.reduce((sum, row) => sum + (Number(row) || 0), 0);\nconsole.log('合計: ' + total + '円');\n",
+  "afterCode": "import fs from 'node:fs';\nconst rows = fs.readFileSync(process.argv[2], 'utf8').trimEnd().split(/\\r?\\n/).slice(1);\nlet total = 0;\nfor (const [index, raw] of rows.entries()) {\n  const value = raw.trim();\n  if (!/^\\d+$/.test(value) || !Number.isSafeInteger(Number(value))) {\n    console.error('エラー: データ' + (index + 1) + '行目の金額が不正です');\n    process.exit(1);\n  }\n  total += Number(value);\n  if (!Number.isSafeInteger(total)) {\n    console.error('エラー: 合計が安全に扱える整数の範囲を超えています');\n    process.exit(1);\n  }\n}\nconsole.log('合計: ' + total + '円');\n",
+  "before": [
+    {
+      "input": "valid.csv",
+      "exitCode": 0,
+      "stdout": "合計: 600円",
+      "stderr": ""
+    },
+    {
+      "input": "invalid.csv",
+      "exitCode": 0,
+      "stdout": "合計: 400円",
+      "stderr": ""
+    }
+  ],
+  "after": [
+    {
+      "input": "valid.csv",
+      "exitCode": 0,
+      "stdout": "合計: 600円",
+      "stderr": ""
+    },
+    {
+      "input": "invalid.csv",
+      "exitCode": 1,
+      "stdout": "",
+      "stderr": "エラー: データ2行目の金額が不正です"
+    }
+  ],
+  "beforeVerdict": {
+    "valid": true,
+    "ready": false,
+    "problems": []
+  },
+  "staleVerdict": {
+    "valid": false,
+    "ready": false,
+    "problems": [
+      "stale_observation_or_contract",
+      "scope_quote_not_in_observed_source",
+      "quote_not_in_observed_source"
+    ]
+  },
+  "afterVerdict": {
+    "valid": true,
+    "ready": true,
+    "problems": []
+  },
+  "beforeSummary": {
+    "format": "iap-share-summary/0.1",
+    "generatedAt": "2026-09-27T18:17:19.166Z",
+    "purpose": "CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。",
+    "revision": 1,
+    "observationId": "d4f989b00efb65ecf0c82292a3f1e52e166f55ec1ed9a459ea216323ac5d1b6c",
+    "assessmentCurrent": true,
+    "disposition": "revise",
+    "scope": "outside",
+    "counts": {
+      "met": 1,
+      "notMet": 1,
+      "unknown": 0,
+      "total": 2
+    },
+    "checks": [
+      {
+        "id": "C1",
+        "text": "100・200・300の合計が600円になる。",
+        "result": "met"
+      },
+      {
+        "id": "C2",
+        "text": "abcを含むデータ2行目をエラーにし、合計を出さない。",
+        "result": "not_met"
+      }
+    ],
+    "nextAction": "ログイン画面の設計をいったん止め、CSVの不正値処理へ戻る。abcを0円扱いせず、行番号付きエラーで止めて再テストする。",
+    "attention": "この評価に、外部への判断依頼は記録されていません。",
+    "acceptance": "PMの受け入れ判断は、この評価からは確認できません。",
+    "sharing": "ローカルの共有下書き。外部送信は行っていません。"
+  },
+  "afterSummary": {
+    "format": "iap-share-summary/0.1",
+    "generatedAt": "2026-09-27T18:17:19.424Z",
+    "purpose": "CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。",
+    "revision": 1,
+    "observationId": "da1c6877623ef2b7ad38ec60db3bd951cccaf2901456e924b8bcd0860526b3fb",
+    "assessmentCurrent": true,
+    "disposition": "ready",
+    "scope": "within",
+    "counts": {
+      "met": 2,
+      "notMet": 0,
+      "unknown": 0,
+      "total": 2
+    },
+    "checks": [
+      {
+        "id": "C1",
+        "text": "100・200・300の合計が600円になる。",
+        "result": "met"
+      },
+      {
+        "id": "C2",
+        "text": "abcを含むデータ2行目をエラーにし、合計を出さない。",
+        "result": "met"
+      }
+    ],
+    "nextAction": "2つの入力の結果と共有文を依頼者へ渡し、成果の受け入れを確認する。",
+    "attention": "この評価に、外部への判断依頼は記録されていません。",
+    "acceptance": "PMの受け入れ判断は、この評価からは確認できません。",
+    "sharing": "ローカルの共有下書き。外部送信は行っていません。"
+  },
+  "beforeShare": "# 進捗共有\n\n目的：CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\n状態：開発者側で修正継続\n依頼の範囲：対象外\n完成条件：達成 1/2・未達 1・未確認 0\n\n- 達成：100・200・300の合計が600円になる。\n- 未達：abcを含むデータ2行目をエラーにし、合計を出さない。\n\n次の一手：ログイン画面の設計をいったん止め、CSVの不正値処理へ戻る。abcを0円扱いせず、行番号付きエラーで止めて再テストする。\n確認事項：この評価に、外部への判断依頼は記録されていません。\n\nPMの受け入れ判断は、この評価からは確認できません。\n\n生成時点：2026-09-27T18:17:19.136Z / 版 1 / 観測 d4f989b00efb\nこの共有文は生成時点のスナップショットです。変更後は再生成してください。\n成果本文・引用・内部ファイル一覧・実行ログは自動転記していません。目的・条件・次の一手の表現は共有前に確認してください。\nローカルの共有下書き。外部送信は行っていません。\n",
+  "staleShare": "# 進捗共有\n\n目的：CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\n状態：最新成果は未評価\n依頼の範囲：未確認\n完成条件：達成 0/2・未達 0・未確認 2\n\n- 未確認：100・200・300の合計が600円になる。\n- 未確認：abcを含むデータ2行目をエラーにし、合計を出さない。\n\n次の一手：最新の成果を照合し、評価を更新する。\n確認事項：最新の評価がなく、確認事項も未確定。\n\nPMの受け入れ判断は、この評価からは確認できません。\n\n生成時点：2026-09-27T18:17:19.272Z / 版 1 / 観測 da1c6877623e\nこの共有文は生成時点のスナップショットです。変更後は再生成してください。\n成果本文・引用・内部ファイル一覧・実行ログは自動転記していません。目的・条件・次の一手の表現は共有前に確認してください。\nローカルの共有下書き。外部送信は行っていません。\n",
+  "afterShare": "# 進捗共有\n\n目的：CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\n状態：条件達成の評価あり\n依頼の範囲：対象内\n完成条件：達成 2/2・未達 0・未確認 0\n\n- 達成：100・200・300の合計が600円になる。\n- 達成：abcを含むデータ2行目をエラーにし、合計を出さない。\n\n次の一手：2つの入力の結果と共有文を依頼者へ渡し、成果の受け入れを確認する。\n確認事項：この評価に、外部への判断依頼は記録されていません。\n\nPMの受け入れ判断は、この評価からは確認できません。\n\n生成時点：2026-09-27T18:17:19.395Z / 版 1 / 観測 da1c6877623e\nこの共有文は生成時点のスナップショットです。変更後は再生成してください。\n成果本文・引用・内部ファイル一覧・実行ログは自動転記していません。目的・条件・次の一手の表現は共有前に確認してください。\nローカルの共有下書き。外部送信は行っていません。\n"
+}
