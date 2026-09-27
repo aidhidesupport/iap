@@ -1,0 +1,74 @@
+[
+  {
+    "command": "node codex/checkpoint.mjs observe <case>",
+    "exitCode": 0,
+    "stdout": "{\n  \"format\": \"iap-codex-observation/0.1\",\n  \"observationId\": \"d4f989b00efb65ecf0c82292a3f1e52e166f55ec1ed9a459ea216323ac5d1b6c\",\n  \"contractHash\": \"db837ebb7478a37703cc2f861e183d00b096f5c0e4497eb21e3ef7153652908f\",\n  \"revision\": 1,\n  \"observedAt\": \"2026-09-27T18:17:19.030Z\",\n  \"contract\": {\n    \"format\": \"iap-codex-contract/0.1\",\n    \"revision\": 1,\n    \"purpose\": \"CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\",\n    \"request\": \"正常入力100・200・300は600円。不正な金額はデータ行番号を示して停止し、合計を出さない。ログイン・DBの追加は対象外。\",\n    \"criteria\": [\n      {\n        \"id\": \"C1\",\n        \"text\": \"100・200・300の合計が600円になる。\"\n      },\n      {\n        \"id\": \"C2\",\n        \"text\": \"abcを含むデータ2行目をエラーにし、合計を出さない。\"\n      }\n    ],\n    \"excluded\": [\n      \"ログイン画面の設計\",\n      \"DB保存\"\n    ],\n    \"files\": [\n      \"sum.mjs\",\n      \"work-note.txt\",\n      \"test-results.txt\"\n    ],\n    \"nextAction\": \"CSV集計の不正な金額の扱いを直し、2つの入力を再確認する。\"\n  },\n  \"files\": [\n    {\n      \"path\": \"sum.mjs\",\n      \"status\": \"observed\",\n      \"sha256\": \"81c40e583b38512bad1f49bbb352ffb1c7848330e6dea06ef7a21c8d315574ea\",\n      \"content\": \"import fs from 'node:fs';\\nconst rows = fs.readFileSync(process.argv[2], 'utf8').trimEnd().split(/\\\\r?\\\\n/).slice(1);\\nconst total = rows.reduce((sum, row) => sum + (Number(row) || 0), 0);\\nconsole.log('合計: ' + total + '円');\\n\"\n    },\n    {\n      \"path\": \"work-note.txt\",\n      \"status\": \"observed\",\n      \"sha256\": \"5894222bf99eaf2e33d9395677f118602d25719b89c03276ab223da505c9998a\",\n      \"content\": \"説明用の架空記録。本人はログイン画面の設計を先に進めている。CSVの不正値処理はまだ直していない。\\n\"\n    },\n    {\n      \"path\": \"test-results.txt\",\n      \"status\": \"observed\",\n      \"sha256\": \"4bf78a1f66e7f6a4ba464d5f0e7727e5746eab68c4c77d6805296e8ee5771b01\",\n      \"content\": \"valid.csv\\nexit: 0\\nstdout: 合計: 600円\\nstderr: (empty)\\n\\ninvalid.csv\\nexit: 0\\nstdout: 合計: 400円\\nstderr: (empty)\\n\"\n    }\n  ]\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs record <case>",
+    "exitCode": 0,
+    "stdout": "{\n  \"valid\": true,\n  \"ready\": false,\n  \"problems\": [],\n  \"shareDraft\": {\n    \"updated\": true,\n    \"path\": \".iap/share-draft.md\",\n    \"disposition\": \"revise\"\n  }\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs verify <case>",
+    "exitCode": 0,
+    "stdout": "{\n  \"valid\": true,\n  \"ready\": false,\n  \"problems\": []\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs share <case>",
+    "exitCode": 0,
+    "stdout": "# 進捗共有\n\n目的：CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\n状態：開発者側で修正継続\n依頼の範囲：対象外\n完成条件：達成 1/2・未達 1・未確認 0\n\n- 達成：100・200・300の合計が600円になる。\n- 未達：abcを含むデータ2行目をエラーにし、合計を出さない。\n\n次の一手：ログイン画面の設計をいったん止め、CSVの不正値処理へ戻る。abcを0円扱いせず、行番号付きエラーで止めて再テストする。\n確認事項：この評価に、外部への判断依頼は記録されていません。\n\nPMの受け入れ判断は、この評価からは確認できません。\n\n生成時点：2026-09-27T18:17:19.136Z / 版 1 / 観測 d4f989b00efb\nこの共有文は生成時点のスナップショットです。変更後は再生成してください。\n成果本文・引用・内部ファイル一覧・実行ログは自動転記していません。目的・条件・次の一手の表現は共有前に確認してください。\nローカルの共有下書き。外部送信は行っていません。\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs share-json <case>",
+    "exitCode": 0,
+    "stdout": "{\n  \"format\": \"iap-share-summary/0.1\",\n  \"generatedAt\": \"2026-09-27T18:17:19.166Z\",\n  \"purpose\": \"CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\",\n  \"revision\": 1,\n  \"observationId\": \"d4f989b00efb65ecf0c82292a3f1e52e166f55ec1ed9a459ea216323ac5d1b6c\",\n  \"assessmentCurrent\": true,\n  \"disposition\": \"revise\",\n  \"scope\": \"outside\",\n  \"counts\": {\n    \"met\": 1,\n    \"notMet\": 1,\n    \"unknown\": 0,\n    \"total\": 2\n  },\n  \"checks\": [\n    {\n      \"id\": \"C1\",\n      \"text\": \"100・200・300の合計が600円になる。\",\n      \"result\": \"met\"\n    },\n    {\n      \"id\": \"C2\",\n      \"text\": \"abcを含むデータ2行目をエラーにし、合計を出さない。\",\n      \"result\": \"not_met\"\n    }\n  ],\n  \"nextAction\": \"ログイン画面の設計をいったん止め、CSVの不正値処理へ戻る。abcを0円扱いせず、行番号付きエラーで止めて再テストする。\",\n  \"attention\": \"この評価に、外部への判断依頼は記録されていません。\",\n  \"acceptance\": \"PMの受け入れ判断は、この評価からは確認できません。\",\n  \"sharing\": \"ローカルの共有下書き。外部送信は行っていません。\"\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs verify <case>",
+    "exitCode": 1,
+    "stdout": "{\n  \"valid\": false,\n  \"ready\": false,\n  \"problems\": [\n    \"stale_observation_or_contract\",\n    \"scope_quote_not_in_observed_source\",\n    \"quote_not_in_observed_source\"\n  ]\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs share <case>",
+    "exitCode": 0,
+    "stdout": "# 進捗共有\n\n目的：CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\n状態：最新成果は未評価\n依頼の範囲：未確認\n完成条件：達成 0/2・未達 0・未確認 2\n\n- 未確認：100・200・300の合計が600円になる。\n- 未確認：abcを含むデータ2行目をエラーにし、合計を出さない。\n\n次の一手：最新の成果を照合し、評価を更新する。\n確認事項：最新の評価がなく、確認事項も未確定。\n\nPMの受け入れ判断は、この評価からは確認できません。\n\n生成時点：2026-09-27T18:17:19.272Z / 版 1 / 観測 da1c6877623e\nこの共有文は生成時点のスナップショットです。変更後は再生成してください。\n成果本文・引用・内部ファイル一覧・実行ログは自動転記していません。目的・条件・次の一手の表現は共有前に確認してください。\nローカルの共有下書き。外部送信は行っていません。\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs observe <case>",
+    "exitCode": 0,
+    "stdout": "{\n  \"format\": \"iap-codex-observation/0.1\",\n  \"observationId\": \"da1c6877623ef2b7ad38ec60db3bd951cccaf2901456e924b8bcd0860526b3fb\",\n  \"contractHash\": \"db837ebb7478a37703cc2f861e183d00b096f5c0e4497eb21e3ef7153652908f\",\n  \"revision\": 1,\n  \"observedAt\": \"2026-09-27T18:17:19.305Z\",\n  \"contract\": {\n    \"format\": \"iap-codex-contract/0.1\",\n    \"revision\": 1,\n    \"purpose\": \"CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\",\n    \"request\": \"正常入力100・200・300は600円。不正な金額はデータ行番号を示して停止し、合計を出さない。ログイン・DBの追加は対象外。\",\n    \"criteria\": [\n      {\n        \"id\": \"C1\",\n        \"text\": \"100・200・300の合計が600円になる。\"\n      },\n      {\n        \"id\": \"C2\",\n        \"text\": \"abcを含むデータ2行目をエラーにし、合計を出さない。\"\n      }\n    ],\n    \"excluded\": [\n      \"ログイン画面の設計\",\n      \"DB保存\"\n    ],\n    \"files\": [\n      \"sum.mjs\",\n      \"work-note.txt\",\n      \"test-results.txt\"\n    ],\n    \"nextAction\": \"CSV集計の不正な金額の扱いを直し、2つの入力を再確認する。\"\n  },\n  \"files\": [\n    {\n      \"path\": \"sum.mjs\",\n      \"status\": \"observed\",\n      \"sha256\": \"175b9b7f0e8e6278b2e2601af98eecb010526de5123581b8ac84bca4fe5afd46\",\n      \"content\": \"import fs from 'node:fs';\\nconst rows = fs.readFileSync(process.argv[2], 'utf8').trimEnd().split(/\\\\r?\\\\n/).slice(1);\\nlet total = 0;\\nfor (const [index, raw] of rows.entries()) {\\n  const value = raw.trim();\\n  if (!/^\\\\d+$/.test(value) || !Number.isSafeInteger(Number(value))) {\\n    console.error('エラー: データ' + (index + 1) + '行目の金額が不正です');\\n    process.exit(1);\\n  }\\n  total += Number(value);\\n  if (!Number.isSafeInteger(total)) {\\n    console.error('エラー: 合計が安全に扱える整数の範囲を超えています');\\n    process.exit(1);\\n  }\\n}\\nconsole.log('合計: ' + total + '円');\\n\"\n    },\n    {\n      \"path\": \"work-note.txt\",\n      \"status\": \"observed\",\n      \"sha256\": \"ac1b8411eaefa356b5f21e1b790db5ed6b178f52a943659dfb71b258b118ca6d\",\n      \"content\": \"説明用の架空記録。ログイン画面の設計を保留し、依頼されたCSVの金額検証に作業を戻した。ログイン・DBは実装していない。\\n\"\n    },\n    {\n      \"path\": \"test-results.txt\",\n      \"status\": \"observed\",\n      \"sha256\": \"b090b70a5a87a6508f7dd9588d109f65214f886e70e6bf8753c688de78abf6c1\",\n      \"content\": \"valid.csv\\nexit: 0\\nstdout: 合計: 600円\\nstderr: (empty)\\n\\ninvalid.csv\\nexit: 1\\nstdout: (empty)\\nstderr: エラー: データ2行目の金額が不正です\\n\"\n    }\n  ]\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs record <case>",
+    "exitCode": 0,
+    "stdout": "{\n  \"valid\": true,\n  \"ready\": true,\n  \"problems\": [],\n  \"shareDraft\": {\n    \"updated\": true,\n    \"path\": \".iap/share-draft.md\",\n    \"disposition\": \"ready\"\n  }\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs verify <case>",
+    "exitCode": 0,
+    "stdout": "{\n  \"valid\": true,\n  \"ready\": true,\n  \"problems\": []\n}\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs share <case>",
+    "exitCode": 0,
+    "stdout": "# 進捗共有\n\n目的：CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\n状態：条件達成の評価あり\n依頼の範囲：対象内\n完成条件：達成 2/2・未達 0・未確認 0\n\n- 達成：100・200・300の合計が600円になる。\n- 達成：abcを含むデータ2行目をエラーにし、合計を出さない。\n\n次の一手：2つの入力の結果と共有文を依頼者へ渡し、成果の受け入れを確認する。\n確認事項：この評価に、外部への判断依頼は記録されていません。\n\nPMの受け入れ判断は、この評価からは確認できません。\n\n生成時点：2026-09-27T18:17:19.395Z / 版 1 / 観測 da1c6877623e\nこの共有文は生成時点のスナップショットです。変更後は再生成してください。\n成果本文・引用・内部ファイル一覧・実行ログは自動転記していません。目的・条件・次の一手の表現は共有前に確認してください。\nローカルの共有下書き。外部送信は行っていません。\n",
+    "stderr": ""
+  },
+  {
+    "command": "node codex/checkpoint.mjs share-json <case>",
+    "exitCode": 0,
+    "stdout": "{\n  \"format\": \"iap-share-summary/0.1\",\n  \"generatedAt\": \"2026-09-27T18:17:19.424Z\",\n  \"purpose\": \"CSVの金額エラーを見逃さず、正しい合計だけを依頼者へ返す。\",\n  \"revision\": 1,\n  \"observationId\": \"da1c6877623ef2b7ad38ec60db3bd951cccaf2901456e924b8bcd0860526b3fb\",\n  \"assessmentCurrent\": true,\n  \"disposition\": \"ready\",\n  \"scope\": \"within\",\n  \"counts\": {\n    \"met\": 2,\n    \"notMet\": 0,\n    \"unknown\": 0,\n    \"total\": 2\n  },\n  \"checks\": [\n    {\n      \"id\": \"C1\",\n      \"text\": \"100・200・300の合計が600円になる。\",\n      \"result\": \"met\"\n    },\n    {\n      \"id\": \"C2\",\n      \"text\": \"abcを含むデータ2行目をエラーにし、合計を出さない。\",\n      \"result\": \"met\"\n    }\n  ],\n  \"nextAction\": \"2つの入力の結果と共有文を依頼者へ渡し、成果の受け入れを確認する。\",\n  \"attention\": \"この評価に、外部への判断依頼は記録されていません。\",\n  \"acceptance\": \"PMの受け入れ判断は、この評価からは確認できません。\",\n  \"sharing\": \"ローカルの共有下書き。外部送信は行っていません。\"\n}\n",
+    "stderr": ""
+  }
+]

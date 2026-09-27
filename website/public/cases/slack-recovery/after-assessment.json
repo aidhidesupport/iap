@@ -1,0 +1,45 @@
+{
+  "format": "iap-codex-assessment/0.1",
+  "observationId": "da1c6877623ef2b7ad38ec60db3bd951cccaf2901456e924b8bcd0860526b3fb",
+  "revision": 1,
+  "disposition": "ready",
+  "nextAction": "2つの入力の結果と共有文を依頼者へ渡し、成果の受け入れを確認する。",
+  "checks": [
+    {
+      "id": "C1",
+      "result": "met",
+      "reason": "正常入力の実行で600円を表示した。",
+      "evidence": [
+        {
+          "file": "test-results.txt",
+          "quote": "valid.csv\nexit: 0\nstdout: 合計: 600円"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "result": "met",
+      "reason": "データ2行目で終了コード1。標準出力は空で合計を出していない。",
+      "evidence": [
+        {
+          "file": "test-results.txt",
+          "quote": "invalid.csv\nexit: 1\nstdout: (empty)\nstderr: エラー: データ2行目の金額が不正です"
+        }
+      ]
+    }
+  ],
+  "scope": {
+    "result": "within",
+    "reason": "作業をCSVの金額検証に戻し、ログイン・DBを追加していない。",
+    "evidence": [
+      {
+        "file": "work-note.txt",
+        "quote": "ログイン画面の設計を保留し、依頼されたCSVの金額検証に作業を戻した。ログイン・DBは実装していない。"
+      },
+      {
+        "file": "sum.mjs",
+        "quote": "console.error('エラー: データ' + (index + 1) + '行目の金額が不正です');"
+      }
+    ]
+  }
+}
